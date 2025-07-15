@@ -384,7 +384,29 @@ createSvgIconsPlugin({
 5. 封装一个全局组件`cus-icon.vue`
 
 ## 配置 git 提交规范
-1. 安装 `npm install @commitlint/cli @commitlint/config-conventional -D`
-2. 根目录下创建 `commitlint.config.js`
-3. 配置 `commitlint.config.js`
-4. 
+1. 安装 `npm install husky -D`
+2. `npx husky init`
+3. 安装 `npm install lint-staged -D`
+4. pageage.json 配置
+```json
+"lint-staged": {
+	"*.{js,ts,vue}": [
+		"eslint --fix"
+	],
+	"*.{vue,html}": [
+		"eslint --fix"
+	]
+}
+"scripts": {
+	"dev": "vite",
+	"build": "vue-tsc -b && vite build",
+	"preview": "vite preview",
+	"lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+	"lint:lint-staged": "lint-staged",
+	"prepare": "husky install"
+},
+```
+5. `.huasky/pre-commit`
+```bash
+npm run lint:lint-staged
+```

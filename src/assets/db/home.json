@@ -1,0 +1,52 @@
+{
+  "docUrl":[
+    {
+      "icon":"",
+      "url":"https://cn.vuejs.org/guide/introduction.html",
+      "name":"Vue"
+    },
+    {
+      "icon":"https://cn.vitejs.dev/logo.svg",
+      "url":"https://cn.vitejs.dev/guide/",
+      "name":"Vite"
+    }
+  ],
+  "framework":[
+    {
+      "path":"/naive",
+      "title":"VUE + NAIVE UI",
+      "bgColor":"linear-gradient( 51deg, #CFFCDE 0%, #E5FFED 100%)",
+      "icon":[
+        "/vue.svg",
+        "https://www.naiveui.com/assets/naivelogo-BdDVTUmz.svg"
+      ]
+    },
+    {
+      "path":"/element",
+      "title":"VUE + ELEMENT PLUS",
+      "bgColor":"linear-gradient( 51deg, rgba(178,239,255,0.4) 4%, rgba(223,247,254,0.4) 100%)",
+      "icon":[
+        "/vue.svg",
+        "https://element-plus.org/images/element-plus-logo.svg"
+      ]
+    },
+    {
+      "path":"/antd",
+      "title":"VUE + ANT DESIGN",
+      "bgColor":"linear-gradient( 51deg, rgba(218,226,255,0.4) 0%, rgba(235,240,255,0.4) 100%)",
+      "icon":[
+        "/vue.svg",
+        "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+      ]
+    },
+    {
+      "path":"",
+      "title":"VUE + Echarts",
+      "bgColor":"linear-gradient( 51deg, rgba(255,217,220,0.4) 0%, rgba(255,235,237,0.4) 99%)",
+      "icon":[
+        "/vue.svg",
+        "https://echarts.apache.org/zh/images/logo.png?_v_=20240226"
+      ]
+    }
+  ]
+}

@@ -1,7 +1,6 @@
 module.exports = {
 	extends: ['@commitlint/config-conventional'],
 	rules: {
-		'subject-case': [0], // subject大小写不做校验
 		// 类型枚举，git提交type必须是以下类型
 		'type-enum': [
 			2,
@@ -19,7 +18,14 @@ module.exports = {
 				'revert', // 回滚 commit
 				'chore' // 对构建过程或辅助工具和库的更改（不影响源文件、测试用例）
 			]
-		]
+		],
+		'subject-case': [0] // subject大小写不做校验
+		// 'type-case': [0], // 类型大小写不做校验
+		// 'type-empty': [0], // 类型不能为空
+		// 'scope-empty': [0], // 作用域不能为空
+		// 'scope-case': [0], // 作用域大小写不做校验
+		// 'subject-full-stop': [0, 'never'], // subject不以.结束
+		// 'header-max-length': [0, 'always', 72] // header最大长度为72
 	},
 	prompt: {
 		messages: {

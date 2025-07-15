@@ -580,4 +580,4 @@ module.exports = {
 	}
 }
 ```
-13. 执行`git add .`后，执行`npm run cmlint`，选择对应的提交类型，输入提交信息
+13. 执行`git add .`后，执行`npm run commit`，选择对应的提交类型，输入提交信息

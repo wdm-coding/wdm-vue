@@ -40,7 +40,7 @@
       ]
     },
     {
-      "path":"",
+      "path":"/echarts",
       "title":"VUE + Echarts",
       "bgColor":"linear-gradient( 51deg, rgba(255,217,220,0.4) 0%, rgba(255,235,237,0.4) 99%)",
       "icon":[

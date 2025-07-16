@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import * as antdIcons from '@ant-design/icons-vue'
   defineOptions({
     name: 'CusIcon'
   })
@@ -15,6 +16,9 @@
     height?: string;
     radius?: string;
     top?: string;
+    rotate?: number;
+    spin?: boolean;
+    twoToneColor?: string;
   }
   const props = withDefaults(defineProps<IconProps>(), {
     icon: '',
@@ -90,6 +94,24 @@
       return ''
     }
   })
+  // antd图标属性
+  const antdIconAttrs:any = computed(() => {
+    return {
+      rotate: props.rotate,
+      spin: props.spin,
+      twoToneColor: props.twoToneColor,
+      style: {
+        color: props.color,
+        fontSize: props.size
+      }
+    }
+  })
+  // 获取antd图标组件
+  const antdIconComponent = computed(() => {
+    const abtdInonName = props.icon.replace('a-', '')
+    const iconName = abtdInonName as keyof typeof antdIcons
+    return antdIcons[iconName]
+  })
 </script>
 
 <template>
@@ -106,6 +128,9 @@
         :style="imageStyle"
       >
     </template>
+    <template v-else-if="iconType === 'a' && antdIconComponent">
+      <component :is="antdIconComponent" v-bind="antdIconAttrs" />
+    </template>
     <div class="icon_label" :style="labelStyle">{{ props.label }}</div>
   </div>
 </template>
@@ -114,7 +139,7 @@
   .cus_icon{
     display: inline-flex;
     align-items: center;
-    align-self: flex-start;
+    width: fit-content; // 宽度自适应
     &_left{
       flex-direction: row-reverse;
     }

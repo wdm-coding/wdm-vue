@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import child from '@/naive-view/components/child.vue'
-  import CusIcon from '@/component/cus-icon.vue'
   defineOptions({
     name: 'NHome'
   })

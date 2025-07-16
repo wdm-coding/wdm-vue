@@ -44,6 +44,19 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/antd-view/pages/Home.vue')
       }
     ]
+  },
+  {
+    path: '/echarts',
+    redirect: '/echarts/e-home',
+    name: 'EchartsLayout',
+    component: () => import('@/echarts-view/Layout/index.vue'),
+    children: [
+      {
+        path: 'e-home',
+        name: 'EchartsHome',
+        component: () => import('@/echarts-view/pages/Home.vue')
+      }
+    ]
   }
 ]
 

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+  defineOptions({
+    name: 'ChildComp'
+  })
   const value = defineModel<string>()
 </script>
 

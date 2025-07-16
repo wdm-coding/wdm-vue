@@ -1,0 +1,88 @@
+<script setup lang="ts">
+  import * as echarts from 'echarts'
+  import { type ECOption } from './types'
+  defineOptions({
+    name: 'VueChart'
+  })
+  interface ChartProps {
+    width?: string;
+    height?: string;
+    options: ECOption | any;
+  }
+  const props = withDefaults(defineProps<ChartProps>(), {
+    width: '100%',
+    height: '400px',
+    options: () => ({})
+  })
+  const chartRef = ref<HTMLElement | null>(null)
+  const chartInstance = shallowRef<echarts.ECharts | null>(null)
+  // 初始化图表
+  const initChart = () => {
+    if (!chartRef.value) return
+    // 清理已有实例
+    if (chartInstance.value) {
+      chartInstance.value.dispose()
+    }
+    chartInstance.value = echarts.init(chartRef.value)
+    chartInstance.value.setOption(props.options)
+  }
+  // 窗口resize 事件处理
+  let observer: ResizeObserver | null = null
+  const initResizeObserver = () => {
+    observer = new ResizeObserver(() => {
+      chartInstance.value?.resize()
+    })
+    if (chartRef.value) {
+      observer.observe(chartRef.value)
+    }
+  }
+  // 更新图表
+  const updateChart = () => {
+    if (chartInstance.value) {
+      chartInstance.value.setOption(props.options)
+    }else{
+      initChart()
+    }
+  }
+  // 双向绑定图表实例
+  const insValue = defineModel<echarts.ECharts | null>({
+    default: null
+  })
+  // 监听 chartInstance 的变化 并更新到 instanceValue 中
+  watchEffect(() => {
+    insValue.value = chartInstance.value
+  })
+  // 监听配置变化
+  watch(() => props.options, updateChart, { deep: true })
+  // 监听宽高变化
+  watch(() => [props.width, props.height], () => {
+    setTimeout(() => chartInstance.value?.resize(), 100)
+  })
+  // 挂载时初始化图表
+  onMounted(() => {
+    initChart()
+    initResizeObserver()
+  })
+  // 卸载时清理资源
+  onBeforeUnmount(() => {
+    if (chartInstance.value) {
+      chartInstance.value.dispose()
+      chartInstance.value = null
+      insValue.value = null
+    }
+    if (observer) {
+      observer.disconnect()
+      observer = null
+    }
+  })
+</script>
+
+
+<template>
+  <div ref="chartRef" :style="{width,height}" />
+</template>
+
+
+<style lang='scss' scoped>
+
+</style>

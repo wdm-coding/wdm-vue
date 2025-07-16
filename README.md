@@ -65,6 +65,7 @@ export default defineConfig({
   }
 }
 ```
+
 ## 配置sass
 
 1. 安装sass-embedded (基于Dart Sass的嵌入式编译器)
@@ -274,6 +275,7 @@ export default defineConfig([
 	}
 ])
 ```
+
 ## 配置vite可视化包分析插件`rollup-plugin-visualizer`
 1. 安装 `npm install rollup-plugin-visualizer -D`
 2. 配置vite.config.ts
@@ -368,6 +370,7 @@ Components({ // 自动导入组件
 	]
 })
 ```
+
 ## vite 配置 svg 图标 `vite-plugin-svg-icons` 插件实现本地svg图标处理
 1. 安装 `npm install vite-plugin-svg-icons -D`
 2. 配置vite.config.ts
@@ -581,3 +584,67 @@ module.exports = {
 }
 ```
 13. 执行`git add .`后，执行`npm run commit`，选择对应的提交类型，输入提交信息
+
+## 配置Mockjs
+1. 安装 `npm install mockjs vite-plugin-mock -D`
+2. 在`vite.config.ts`中配置
+```ts
+import { viteMockServe } from 'vite-plugin-mock'
+export default defineConfig({
+  plugins: [
+    vue(),
+    viteMockServe({
+      // 默认设置，更多配置见下方
+      mockPath: 'mock', // 指定mock数据文件夹路径
+      localEnabled: true, // 开发环境启用
+      prodEnabled: false, // 生产环境禁用
+      logger: true, // 是否在控制台显示请求日志
+    }),
+  ],
+})
+```
+3. 在`src/mock`目录下创建对应的模拟数据文件
+```ts
+import { MockMethod } from 'vite-plugin-mock'
+export default [
+  {
+    url: '/api/login',
+    method: 'post',
+    response: () => {
+      return {
+        code: 200,
+        message: 'success',
+        data: {
+          token: 'random_token_123456',
+          userInfo: {
+            name: 'admin',
+            role: 'admin',
+          },
+        },
+      }
+    },
+  },
+  {
+    url: '/api/user',
+    method: 'get',
+    response: () => {
+      return {
+        code: 200,
+        message: 'success',
+        data: {
+          name: 'admin',
+          age: 30,
+        },
+      }
+    },
+  },
+] as MockMethod[]
+```
+4. 使用Mockjs
+```ts
+fetch('/api/user')
+.then(response => response.json())
+.then(json => {
+	data.value = json
+})
+```

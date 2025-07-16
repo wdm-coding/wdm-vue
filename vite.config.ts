@@ -6,12 +6,15 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import {
-  NaiveUiResolver,ElementPlusResolver,AntDesignVueResolver  
+  NaiveUiResolver,
+  ElementPlusResolver,
+  AntDesignVueResolver 
 } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { viteMockServe } from 'vite-plugin-mock'
 // 获取环境变量
 export default defineConfig(({ mode }) => {
-  const { VITE_PORT } = loadEnv(mode, process.cwd(), '')
+  const { VITE_PORT,VITE_MOCK_ENABLE } = loadEnv(mode, process.cwd(), '')
   return {
     // 配置全局scss变量
     css: {
@@ -66,6 +69,13 @@ export default defineConfig(({ mode }) => {
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],// 指定图标存放的目录
         symbolId: 'icon-[dir]-[name]' // 生成的symbol id格式
+      }),
+      // 模拟数据
+      viteMockServe({
+        mockPath: 'src/mock', // 模拟数据存放的目录
+        enable: VITE_MOCK_ENABLE === 'true', // 是否启用插件
+        logger: true, // 控制台打印日志
+        cors: true // 跨域
       }),
       // 放在插件数组的最后
       visualizer({

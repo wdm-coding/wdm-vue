@@ -2,7 +2,9 @@ import js from '@eslint/js'
 import globals from 'globals'
 import tseslint from 'typescript-eslint'
 import pluginVue from 'eslint-plugin-vue'
-import { defineConfig } from 'eslint/config'
+import {
+ defineConfig 
+} from 'eslint/config'
 export default defineConfig([
 	{
 		ignores: [
@@ -74,26 +76,27 @@ export default defineConfig([
 			// 配置逗号风格
 			'comma-dangle': ['error', 'never'],
 			// 配置分号风格
-			semi: ['error', 'never'],
+			'semi': ['error', 'never'],
 			// 对象属性换行规则
 			'object-curly-newline': [
 				'error',
 				{
 					// 对象字面量配置
 					ObjectExpression: {
-						minProperties: 2, // 1个属性就换行
+						minProperties: 3, // 1个属性就换行
 						consistent: true, // 属性风格一致
 						multiline: true // 多行格式
 					},
 					// 解构对象配置
 					ObjectPattern: {
-						minProperties: 2, // 2个以上属性换行
+						minProperties: 3, // 2个以上属性换行
 						consistent: true
 					},
 					// 导入配置
 					ImportDeclaration: {
-						minProperties: 3, // 3个以上属性换行
-						consistent: true
+						multiline: true, // 多行格式
+						minProperties: 3, // 1个以上属性换行
+						consistent: true // 属性风格一致
 					},
 					// 导出配置
 					ExportDeclaration: {
@@ -106,7 +109,7 @@ export default defineConfig([
 			'object-property-newline': [
 				'error',
 				{
-					allowAllPropertiesOnSameLine: false // 禁止所有属性在同一行
+					allowAllPropertiesOnSameLine: true // 禁止所有属性在同一行
 				}
 			],
 			// 大括号内的空格

@@ -10,6 +10,7 @@
   const jumpFramework = (item: any) => {
     item.path && router.push(item.path)
   }
+  const title = import.meta.env.VITE_HOME_TITLE
 </script>
 
 <template>
@@ -28,7 +29,7 @@
     </header>
     <main class="home_main">
       <section class="framework_wrap">
-        <h1>后台框架 与 UI组件库</h1>
+        <h1>{{title}}</h1>
         <div class="framework_list">
           <div
             class="framework_item"

@@ -3,14 +3,20 @@
     name: 'EchartsHome'
   })
   const chartOptions = reactive({
-    title: {
-      text: 'ECharts Entry Example'
+    grid: {
+      top: '3%',
+      left: '3%',
+      right: '4%',
+      bottom: '3%',
+      containLabel: true
     },
-    tooltip: {},
     xAxis: {
+      type: 'category',
       data: ['Shirts', 'Cardigans', 'Chiffons', 'Pants', 'Heels', 'Socks']
     },
-    yAxis: {},
+    yAxis: {
+      type: 'value'
+    },
     series: [{
       name: 'Sales',
       type: 'bar',
@@ -19,13 +25,12 @@
   })
 </script>
 
-
 <template>
   <a-card class='echarts_home_wrap'>
-    <vue-chart :options="chartOptions" width="200px" height="200px" />
-    <vue-chart :options="chartOptions" width="200px" height="200px" />
-    <vue-chart :options="chartOptions" width="200px" height="200px" />
-    <vue-chart :options="chartOptions" width="200px" height="200px" />
+    <vue-chart :options="chartOptions" width="400px" height="200px" />
+    <vue-chart :options="chartOptions" width="400px" height="200px" />
+    <vue-chart :options="chartOptions" width="400px" height="200px" />
+    <vue-chart :options="chartOptions" width="400px" height="200px" />
   </a-card>
 </template>
 

@@ -32,15 +32,38 @@
   const collapsed = ref(false)
   const selectedKeys = ref(['bar'])
   const typeList = ref([])
+  const CusIcon = resolveComponent('cus-icon')
+  const iconRender = (icon: string) => {
+    return h(
+      CusIcon,
+      {
+        icon: icon,
+        size: '16px',
+        color: '#fff'
+      }
+    )
+  }
   const getEchartsMenusHandler = async () => {
     const res = await getEchartsMenus() as { code: number; data: any }
     const { code, data } = res
     if(code === 0){
-      typeList.value = data
+      typeList.value = data.map((item:any) => ({
+        ...item,
+        icon: item.icon ? iconRender(item.icon) : ''
+      }))
     }
   }
   const openUrl = (url: string) => {
     window.open(url)
+  }
+  const router = useRouter()
+  const menuSelect = ({ item }:any) => {
+    const { path } = item
+    if(path){
+      router.push(path)
+    }else{
+      router.push('/echarts')
+    }
   }
   getEchartsMenusHandler()
 </script>
@@ -57,6 +80,7 @@
             theme="dark"
             mode="inline"
             :items="typeList"
+            @select="menuSelect"
           />
         </a-layout-sider>
         <a-layout>

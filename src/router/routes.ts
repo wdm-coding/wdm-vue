@@ -55,6 +55,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'e-home',
         name: 'EchartsHome',
         component: () => import('@/echarts-view/pages/Home.vue')
+      },
+      {
+        path: 'create-chart',
+        name: 'CreateChart',
+        component: () => import('@/echarts-view/pages/CreateChart/index.vue')
       }
     ]
   }

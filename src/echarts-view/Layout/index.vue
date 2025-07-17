@@ -15,7 +15,7 @@
     theme: {
       algorithm: theme.darkAlgorithm, // 普通模式
       token: {
-        colorPrimary: '#00b96b'
+        // colorPrimary: '#00b96b'
       },
       components: {
         Card: {
@@ -30,13 +30,17 @@
   }
 
   const collapsed = ref(false)
-  const selectedKeys = ref(['1'])
+  const selectedKeys = ref(['bar'])
+  const typeList = ref([])
   const getEchartsMenusHandler = async () => {
-    const res = await getEchartsMenus({
-      pageSize: 10,
-      pageNum: 1
-    })
-    console.log(res)
+    const res = await getEchartsMenus() as { code: number; data: any }
+    const { code, data } = res
+    if(code === 0){
+      typeList.value = data
+    }
+  }
+  const openUrl = (url: string) => {
+    window.open(url)
   }
   getEchartsMenusHandler()
 </script>
@@ -47,20 +51,39 @@
     <a-app>
       <a-layout class="echarts_layout">
         <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
-          <div class="logo" />
-          <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline" />
+          <div class="logo">图表分类</div>
+          <a-menu
+            v-model:selectedKeys="selectedKeys"
+            theme="dark"
+            mode="inline"
+            :items="typeList"
+          />
         </a-layout-sider>
         <a-layout>
           <a-layout-header class="header">
-            <a-card style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: space-between;">
+            <cus-icon
+              class="trigger"
+              :icon="collapsed?'a-MenuUnfoldOutlined':'a-MenuFoldOutlined'"
+              @click="() => (collapsed = !collapsed)"
+              size="24px"
+              color="#fff"
+            />
+            <div style="margin-left: auto;display: flex;align-items: center;">
               <cus-icon
                 class="trigger"
-                :icon="collapsed?'a-MenuUnfoldOutlined':'a-MenuFoldOutlined'"
-                @click="() => (collapsed = !collapsed)"
+                icon="https://next.antdv.com/assets/logo.1ef800a8.svg"
+                @click="openUrl('https://antdv.com/components/overview-cn')"
                 size="24px"
                 color="#fff"
               />
-            </a-card>
+              <cus-icon
+                class="trigger"
+                icon="@/assets/images/echarts-logo.png"
+                @click="openUrl('https://echarts.apache.org/zh/index.html')"
+                size="24px"
+                color="#fff"
+              />
+            </div>
           </a-layout-header>
           <a-layout-content>
             <router-view />
@@ -81,11 +104,13 @@
     background: rgba(255, 255, 255, 0.3);
     margin: 16px;
     border-radius: 2px;
+    line-height: 32px;
+    text-align: center;
   }
   .header{
     display: flex;
     align-items: center;
-    padding: 0;
+    padding: 0 20px 0 0;
     .trigger{
       padding: 0 24px;
       cursor: pointer;

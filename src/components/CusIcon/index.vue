@@ -71,8 +71,8 @@
   // 图片样式
   const imageStyle = computed(() => {
     const style = {
-      width: `${props.width || props.size}px`,
-      height: `${props.height || props.size}px`,
+      width: `${props.width || props.size}`,
+      height: `${props.height || props.size}`,
       borderRadius: props.radius,
       ... props.top ? {
         position: 'relative' as any,

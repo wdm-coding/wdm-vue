@@ -1,38 +1,38 @@
 export const typeList = [
   {
-    id: 1,
+    id: '1',
     label: '柱状图',
     icon: '',
-    type: 'bar'
+    key: 'bar'
   },
   {
-    id: 2,
+    id: '2',
     label: '折线图',
     icon: '',
-    type: 'line'
+    key: 'line'
   },
   {
-    id: 3,
+    id: '3',
     label: '饼图',
     icon: '',
-    type: 'pie'
+    key: 'pie'
   },
   {
-    id: 4,
+    id: '4',
     label: '水球图',
     icon: '',
-    type: 'liquid'
+    key: 'liquid'
   },
   {
-    id: 5,
+    id: '5',
     label: '地图',
     icon: '',
-    type: 'map'
+    key: 'map'
   },
   {
-    id: 6,
+    id: '6',
     label: '词云图',
     icon: '',
-    type: 'wordCloud'
+    key: 'wordCloud'
   }
 ]

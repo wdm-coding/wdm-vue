@@ -4,7 +4,7 @@ export default [
   {
     url: '/api/echarts/types',
     method: 'get',
-    statusCode: 404,
+    statusCode: 200,
     response: () => {
       return {
         code: 0,

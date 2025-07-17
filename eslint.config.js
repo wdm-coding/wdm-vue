@@ -40,6 +40,7 @@ export default defineConfig([
 	},
 	{
 		rules: {
+			'no-irregular-whitespace': 'off',
 			'no-undef': 'off',
 			// 未使用的变量不报错
 			'@typescript-eslint/no-unused-vars': 'off',

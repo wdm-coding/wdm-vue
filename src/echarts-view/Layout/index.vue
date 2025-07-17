@@ -1,13 +1,15 @@
 <script setup lang="ts">
   //  Ant Design Vue
   // https://antdv.com/components/overview-cn
-  defineOptions({
-    name: 'EchartsLayout'
-  })
   import zhCN from 'ant-design-vue/es/locale/zh_CN'
   import { theme } from 'ant-design-vue'
   import type { ConfigProviderProps } from 'ant-design-vue'
   import { getEchartsMenus } from '@/api/echarts/index'
+  import { useAntdMessage } from '@/hooks/useMessage'
+  defineOptions({
+    name: 'EchartsLayout'
+  })
+  useAntdMessage()
   const antdConfig:ConfigProviderProps = {
     locale: zhCN,
     theme: {

@@ -2,29 +2,14 @@
   defineOptions({
     name: 'EchartsHome'
   })
-  import { App } from 'ant-design-vue'
-  const {
-    message, modal, notification 
-  } = App.useApp()
 
   const showMessage = () => {
     isShow.value = !isShow.value
-    message.success('Success!')
   }
 
-  const showModal = () => {
-    modal.warning({
-      title: 'This is a warning message',
-      content: 'some messages...some messages...'
-    })
-  }
+  const showModal = () => {}
 
   const showNotification = () => {
-    notification.info({
-      message: 'Notification topLeft',
-      description: 'Hello, Ant Design Vue!!',
-      placement: 'topLeft'
-    })
     chartOptions.title!.text = 'ECharts Entry Example----'
   }
   const chartOptions = reactive({

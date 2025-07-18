@@ -12,6 +12,7 @@ import {
 } from 'unplugin-vue-components/resolvers'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
+import monacoEditorPlugin from 'vite-plugin-monaco-editor-esm'
 // 获取环境变量
 export default defineConfig(({ mode }) => {
   const { VITE_PORT,VITE_MOCK_ENABLE } = loadEnv(mode, process.cwd(), '')
@@ -77,6 +78,7 @@ export default defineConfig(({ mode }) => {
         logger: true, // 控制台打印日志
         cors: true // 跨域
       }),
+      monacoEditorPlugin({}), // Monaco Editor 插件
       // 放在插件数组的最后
       visualizer({
         open: true,         // 自动打开

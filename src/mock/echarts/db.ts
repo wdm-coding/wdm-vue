@@ -3,7 +3,8 @@ export const typeList = [
     id: '1',
     label: '柱状图',
     icon: 'a-BarChartOutlined',
-    key: 'bar'
+    key: 'bar',
+    path: '/echarts/bar-chart'
   },
   {
     id: '2',
@@ -37,9 +38,9 @@ export const typeList = [
   },
   {
     id: '7',
-    label: '图表创建',
+    label: '图表配置',
     icon: 'a-DeploymentUnitOutlined',
-    key: 'createChart',
-    path: '/echarts/create-chart'
+    key: 'ChartOptions',
+    path: '/echarts/e-home'
   }
 ]

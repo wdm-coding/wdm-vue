@@ -31,6 +31,8 @@ declare module 'vue' {
     ASelect: typeof import('ant-design-vue/es')['Select']
     ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
     ASpace: typeof import('ant-design-vue/es')['Space']
+    ASwitch: typeof import('ant-design-vue/es')['Switch']
+    CodeEditor: typeof import('./src/components/CodeEditor/index.vue')['default']
     ColorPicker: typeof import('./src/components/ColorPicker/index.vue')['default']
     CusIcon: typeof import('./src/components/CusIcon/index.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']

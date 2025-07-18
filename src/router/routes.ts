@@ -57,9 +57,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/echarts-view/pages/Home.vue')
       },
       {
-        path: 'create-chart',
-        name: 'CreateChart',
-        component: () => import('@/echarts-view/pages/CreateChart/index.vue')
+        path: 'bar-chart',
+        name: 'BarChart',
+        component: () => import('@/echarts-view/pages/BarChart/index.vue')
       }
     ]
   }

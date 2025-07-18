@@ -8,10 +8,14 @@
     width?: string;
     height?: string;
     options: ECOption | any;
+    theme?: string | null;
+    renderer?: 'canvas' | 'svg';
   }
   const props = withDefaults(defineProps<ChartProps>(), {
     width: '100%',
     height: '400px',
+    theme: null,
+    renderer: 'svg',
     options: () => ({})
   })
   const chartRef = ref<HTMLElement | null>(null)
@@ -23,7 +27,7 @@
     if (chartInstance.value) {
       chartInstance.value.dispose()
     }
-    chartInstance.value = echarts.init(chartRef.value)
+    chartInstance.value = echarts.init(chartRef.value,props.theme,{ renderer: props.renderer })
     chartInstance.value.setOption(props.options)
   }
   // 窗口resize 事件处理

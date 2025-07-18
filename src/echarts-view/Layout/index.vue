@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  //  Ant Design Vue
-  // https://antdv.com/components/overview-cn
   import zhCN from 'ant-design-vue/es/locale/zh_CN'
   import { theme } from 'ant-design-vue'
   import type { ConfigProviderProps } from 'ant-design-vue'
   import { getEchartsMenus } from '@/api/echarts/index'
   import { useAntdMessage } from '@/hooks/useMessage'
+  import { PerfectScrollbar } from 'vue3-perfect-scrollbar'
+  import 'vue3-perfect-scrollbar/style.css'
   defineOptions({
     name: 'EchartsLayout'
   })
@@ -110,7 +110,9 @@
             </div>
           </a-layout-header>
           <a-layout-content>
-            <router-view />
+            <PerfectScrollbar>
+              <router-view />
+            </PerfectScrollbar>
           </a-layout-content>
         </a-layout>
       </a-layout>
@@ -121,7 +123,7 @@
 
 <style lang='scss' scoped>
 .echarts_layout{
-  height: 100%;
+  width:100%;
   height: 100vh;
   .logo {
     height: 32px;
@@ -139,6 +141,11 @@
       padding: 0 24px;
       cursor: pointer;
     }
+  }
+  .ps{
+    height: 100%;
+    width: 100%;
+    padding: 0 10px;
   }
 }
 </style>

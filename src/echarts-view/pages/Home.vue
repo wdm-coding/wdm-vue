@@ -27,19 +27,7 @@
 
 <template>
   <a-card class='echarts_home_wrap'>
-    <a-row :gutter="[26,36]" :justify="'space-around'">
-      <a-col
-        :xs="2"
-        :sm="4"
-        :md="6"
-        :lg="8"
-        :xl="10"
-        v-for="(item, index) in 20"
-        :key="index"
-      >
-        <vue-chart :options="chartOptions" width="100%" height="200px" />
-      </a-col>
-    </a-row>
+    <AntdForm />
   </a-card>
 </template>
 

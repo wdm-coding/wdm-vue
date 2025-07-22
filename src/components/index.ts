@@ -10,7 +10,10 @@ type ComponentModule = {
 // install函数
 const install = (app:App) => {
   const components = import.meta.glob<ComponentModule>('./**/*.vue', { eager: true })
-  Object.keys(components).forEach(key => {
+  const AntdComponents = import.meta.glob<ComponentModule>('../antd-view/components/**/*.vue', { eager: true })
+  // 合并Antd组件
+  const all =  Object.assign(components, AntdComponents)
+  Object.keys(all).forEach(key => {
     const component = components[key].default
     const componentName = component.name
     if(!componentName) {

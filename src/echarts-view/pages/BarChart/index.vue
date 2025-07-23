@@ -14,10 +14,10 @@
         :md="6"
         :lg="8"
         :xl="8"
-        v-for="(item, index) in 10"
+        v-for="(item, index) in 1"
         :key="index"
       >
-        <div style="background-color: aliceblue;">
+        <div>
           <BaseBarChart />
         </div>
       </a-col>

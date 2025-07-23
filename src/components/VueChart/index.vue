@@ -20,6 +20,7 @@
   })
   const chartRef = ref<HTMLElement | null>(null)
   const chartInstance = shallowRef<echarts.ECharts | null>(null)
+  const loading = defineModel<boolean>('loading',{ default: false })
   // 初始化图表
   const initChart = () => {
     if (!chartRef.value) return
@@ -83,10 +84,14 @@
 
 
 <template>
-  <div ref="chartRef" :style="{width,height}" />
+  <a-spin tip="加载中..." :spinning="loading">
+    <div ref="chartRef" :style="{width,height}" />
+  </a-spin>
 </template>
 
 
 <style lang='scss' scoped>
-
+::v-deep(.ant-spin-text){
+  text-shadow: none !important;
+}
 </style>

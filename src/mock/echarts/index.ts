@@ -1,5 +1,5 @@
 import type { MockMethod } from 'vite-plugin-mock'
-import { typeList } from './db'
+import { typeList,barData } from './db'
 export default [
   {
     url: '/api/echarts/types',
@@ -10,6 +10,18 @@ export default [
         code: 0,
         message: 'success',
         data: [...typeList]
+      }
+    }
+  },
+  {
+    url: '/api/echarts/barData',
+    method: 'get',
+    statusCode: 200,
+    response: () => {
+      return {
+        code: 0,
+        message: 'success',
+        data: barData
       }
     }
   }

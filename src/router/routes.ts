@@ -47,19 +47,19 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: '/echarts',
-    redirect: '/echarts/e-home',
+    redirect: '/echarts/bar-chart',
     name: 'EchartsLayout',
     component: () => import('@/echarts-view/Layout/index.vue'),
     children: [
       {
-        path: 'e-home',
-        name: 'EchartsHome',
-        component: () => import('@/echarts-view/pages/Home.vue')
-      },
-      {
         path: 'bar-chart',
         name: 'BarChart',
         component: () => import('@/echarts-view/pages/BarChart/index.vue')
+      },
+      {
+        path: 'e-home',
+        name: 'EchartsHome',
+        component: () => import('@/echarts-view/pages/Home.vue')
       }
     ]
   }

@@ -44,3 +44,29 @@ export const typeList = [
     path: '/echarts/e-home'
   }
 ]
+
+export const barData = {
+  xData: [
+    '周一',
+    '周二',
+    '周三',
+    '周四',
+    '周五',
+    '周六',
+    '周日'
+  ],
+  series: [
+    {
+      name: '销量',
+      data: [110, 100, 50, 180, 170, 10, 90]
+    },
+    {
+      name: '库存',
+      data: [20, 200, 10, 20, 270, 10, 130]
+    },
+    {
+      name: '访问量',
+      data: [50, 300, 50, 80, 370, 110, 100]
+    }
+  ]
+}

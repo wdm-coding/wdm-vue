@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import * as echarts from 'echarts'
+  import echarts from './tools/index'
   import { type ECOption } from './types'
   defineOptions({
     name: 'VueChart'

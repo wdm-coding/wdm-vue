@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import './test.js'
   import child from '@/naive-view/components/child.vue'
   defineOptions({
     name: 'NHome'

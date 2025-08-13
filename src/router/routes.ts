@@ -16,6 +16,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'n-home',
         name: 'NHome',
         component: () => import('@/naive-view/pages/Home.vue')
+      },
+      {
+        path: 'n-test',
+        name: 'NTest',
+        component: () => import('@/naive-view/pages/Test/index.vue')
       }
     ]
   },

@@ -2,32 +2,41 @@
   defineOptions({
     name: 'EHome'
   })
+  const value = ref('2025-08-14')
+  const isHoliday = date => {
+    console.log(date)
+    return date.text === 20
+  }
 </script>
 
 <template>
   <div class="comName_wrap">
-    <div class="mb-4">
-      <el-button>Default</el-button>
-      <el-button type="primary">Primary</el-button>
-      <el-button type="success">Success</el-button>
-      <el-button type="info">Info</el-button>
-      <el-button type="warning">Warning</el-button>
-      <el-button type="danger">Danger</el-button>
-    </div>
-    <el-container>
-      <el-header>Header</el-header>
-      <el-main>Main</el-main>
-    </el-container>
-    <el-card style="max-width: 480px">
-      <template #header>
-        <div class="card-header">
-          <span>Card name</span>
+    <el-date-picker
+      v-model="value"
+      type="date"
+      placeholder="选择日期"
+    >
+      <template #default="cell">
+        <div class="cell" :class="{ 'current-date': cell.isCurrent }">
+          <span class="text">{{ cell.text }}</span>
+          <span v-if="isHoliday(cell)" class="holiday" />
         </div>
       </template>
-      <p v-for="o in 4" :key="o" class="text item">{{ "List item " + o }}</p>
-      <template #footer>Footer content</template>
-    </el-card>
+    </el-date-picker>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.cell.current-date .text{
+  color: #f5089a !important;
+}
+.cell .holiday {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #6ac23c;
+  color: #67c23a;
+  font-weight: bold;
+}
+</style>

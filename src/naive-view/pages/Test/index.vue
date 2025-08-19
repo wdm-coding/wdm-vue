@@ -1,45 +1,32 @@
 <script setup lang="ts">
+  import vueThree from './vue-three.vue'
   defineOptions({
     name: 'NTest'
   })
-  const name = ref('xxx')
-  const obj = reactive({
-    name: 'xxx'
-  })
-  watch(
-    () => name.value,
-    (val,old) => {
-      console.log('name change',val,old)
-    },
-    {
-      deep: true
-    }
-  )
-  watch(
-    () => obj.name,
-    (val,old) => {
-      console.log('obj change',val,old)
-    },
-    {
-      deep: true
-    }
-  )
   const isShow = ref(true)
-  const changeName = (e:any,v:any) => {
-    console.log('changeName', e)
-    name.value = v
-    obj.name = v
-    isShow.value = !isShow.value
+  const state = reactive({
+    name: 'vue-three',
+    age: 100
+  })
+  const changeName = () => {
+    state.name = 'vue-three-change'
+    state.age = 200
   }
+  const obj = computed(() => ({
+    name: state.name,
+    age: state.age
+  }))
+  console.log('obj', obj.value)
 </script>
 
 
 <template>
   <div class='n_test_wrap'>
-    <n-button @click="changeName($event,111)">修改name</n-button>
-    <div v-if="isShow">v-if</div>
-    <div v-show="isShow">v-show</div>
-    <div :style="{visibility:isShow ? 'visible' : 'hidden'}">visibility</div>
+    <n-button @click="changeName">修改name</n-button>
+    <vueThree
+      v-if="isShow"
+      v-bind="state"
+    />
   </div>
 </template>
 

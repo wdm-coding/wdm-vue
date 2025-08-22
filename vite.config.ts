@@ -13,6 +13,7 @@ import {
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { viteMockServe } from 'vite-plugin-mock'
 import monacoEditorPlugin from 'vite-plugin-monaco-editor-esm'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 // 获取环境变量
 export default defineConfig(({ mode }) => {
   const { VITE_PORT,VITE_MOCK_ENABLE } = loadEnv(mode, process.cwd(), '')
@@ -35,6 +36,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       vue(),
+      vueJsx(),
       VueDevTools(),
       AutoImport({
         imports: [

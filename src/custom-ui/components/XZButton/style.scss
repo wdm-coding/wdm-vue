@@ -1,0 +1,143 @@
+.xz-button {
+  --xz-button-font-weight: var(--xz-font-weight-primary);
+  --xz-button-border-color: var(--xz-border-color);
+  --xz-button-bg-color: var(--xz-fill-color-blank);
+  --xz-button-text-color: var(--xz-text-color-regular);
+  --xz-button-disabled-text-color: var(--xz-disabled-text-color);
+  --xz-button-disabled-bg-color: var(--xz-fill-color-blank);
+  --xz-button-disabled-border-color: var(--xz-border-color-light);
+  --xz-button-hover-text-color: var(--xz-color-primary);
+  --xz-button-hover-bg-color: var(--xz-color-primary-light-9);
+  --xz-button-hover-border-color: var(--xz-color-primary-light-7);
+  --xz-button-active-text-color: var(--xz-button-hover-text-color);
+  --xz-button-active-border-color: var(--xz-color-primary);
+  --xz-button-active-bg-color: var(--xz-button-hover-bg-color);
+  --xz-button-outline-color: var(--xz-color-primary-light-5);
+  --xz-button-active-color: var(--xz-text-color-primary);
+}
+.xz-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  height: 32px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: var(--xz-button-text-color);
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  transition: .1s;
+  font-weight: var(--xz-button-font-weight);
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  background-color: var(--xz-button-bg-color);
+  border: var(--xz-border);
+  border-color: var(--xz-button-border-color);
+  padding: 8px 15px;
+  font-size: var(--xz-font-size-base);
+  border-radius: var(--xz-border-radius-base);
+  // & + &将编译成两个相同选择器的相邻组合
+  & + & {
+    margin-left: 12px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--xz-button-hover-text-color);
+    border-color: var(--xz-button-hover-border-color);
+    background-color: var(--xz-button-hover-bg-color);
+    outline: none;    
+  }
+  &:active {
+    color: var(--xz-button-active-text-color);
+    border-color: var(--xz-button-active-border-color);
+    outline: none;
+  }
+  &.is-plain {
+    --xz-button-hover-text-color: var(--xz-color-primary);
+    --xz-button-hover-bg-color: var(--xz-fill-color-blank);
+    --xz-button-hover-border-color: var(--xz-color-primary);    
+  }
+  /*round*/
+  &.is-round {
+    border-radius: var(--xz-border-radius-round);
+  }
+  /*circle*/
+  &.is-circle {
+    border-radius: 50%;
+    padding: 8px;
+  }
+  /*disabled*/
+  &.is-disabled, &.is-disabled:hover, &.is-disabled:focus, 
+  // 选择具有 disabled属性的元素，并为其应用特定样式
+  &[disabled], &[disabled]:hover, &[disabled]:focus 
+  {
+    color: var(--xz-button-disabled-text-color);
+    cursor: not-allowed;
+    background-image: none;
+    background-color: var(--xz-button-disabled-bg-color);
+    border-color: var(--xz-button-disabled-border-color);
+  }
+  // [class*="xz-icon"]是一个属性选择器，用于选择所有class属性中包含子字符串"xz-icon"的元素。
+  [class*=xz-icon] + span {
+    margin-left: 6px;
+  }
+}
+// scss 循环
+$types: primary, success, warning, info, danger;
+.xz-button--default {
+  --xz-button-size: 32px;
+  height: var(--xz-button-size);
+  padding: 8px 15px;
+  font-size: var(--xz-font-size-base);
+  border-radius: var(--xz-border-radius-base);
+}
+@each $val in $types {
+  .xz-button--#{$val} {
+    --xz-button-text-color: var(--xz-color-white);
+    --xz-button-bg-color: var(--xz-color-#{$val});
+    --xz-button-border-color: var(--xz-color-#{$val});
+    --xz-button-outline-color: var(--xz-color-#{$val}-light-5);
+    --xz-button-active-color: var(--xz-color-#{$val}-dark-2);
+    --xz-button-hover-text-color: var(--xz-color-white);
+    --xz-button-hover-bg-color: var(--xz-color-#{$val}-light-3);
+    --xz-button-hover-border-color: var(--xz-color-#{$val}-light-3);
+    --xz-button-active-bg-color: var(--xz-color-#{$val}-dark-2);
+    --xz-button-active-border-color: var(--xz-color-#{$val}-dark-2);
+    --xz-button-disabled-text-color: var(--xz-color-white);
+    --xz-button-disabled-bg-color: var(--xz-color-#{$val}-light-5);
+    --xz-button-disabled-border-color: var(--xz-color-#{$val}-light-5);
+  }
+  .xz-button--#{$val}.is-plain {
+    --xz-button-text-color: var(--xz-color-#{$val});
+    --xz-button-bg-color: var(--xz-color-#{$val}-light-9);
+    --xz-button-border-color: var(--xz-color-#{$val}-light-5);
+    --xz-button-hover-text-color: var(--xz-color-white);
+    --xz-button-hover-bg-color: var(--xz-color-#{$val});
+    --xz-button-hover-border-color: var(--xz-color-#{$val});
+    --xz-button-active-text-color: var(--xz-color-white);
+  }
+}
+.xz-button--default {
+  --xz-button-size: 32px;
+  height: var(--xz-button-size);
+  padding: 8px 15px;
+  font-size: var(--xz-font-size-base);
+  border-radius: var(--xz-border-radius-base);
+}
+.xz-button--large {
+  --xz-button-size: 40px;
+  height: var(--xz-button-size);
+  padding: 12px 19px;
+  font-size: var(--xz-font-size-base);
+  border-radius: var(--xz-border-radius-base);
+}
+.xz-button--small {
+  --xz-button-size: 24px;
+  height: var(--xz-button-size);
+  padding: 5px 11px;
+  font-size: 12px;
+  border-radius: calc(var(--xz-border-radius-base) - 1px);
+}
+

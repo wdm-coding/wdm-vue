@@ -67,6 +67,24 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/echarts-view/pages/Home.vue')
       }
     ]
+  },
+  {
+    path: '/custom-ui',
+    redirect: '/custom-ui/button-view',
+    name: 'CustomUILayout',
+    component: () => import('@/custom-ui/Layout/index.vue'),
+    children: [
+      {
+        path: 'button-view',
+        name: 'ButtonView',
+        component: () => import('@/custom-ui/pages/ButtonView/index.vue')
+      },
+      {
+        path: 'icon-view',
+        name: 'IconView',
+        component: () => import('@/custom-ui/pages/IconView/index.vue')
+      }
+    ]
   }
 ]
 

@@ -1,0 +1,76 @@
+@use "sass:color"; // 引入Sass的颜色模块，用于颜色操作
+/* :root 声明全局 CSS 变量（自定义属性） :root优先级高于html */
+:root{
+  /* 基础色 */
+  --xz-color-white: #fff;
+  --xz-color-black: #000;
+  --xz-color-default:#f5f7fa;
+  $theme-colors: (
+    primary: #007bff,
+    success: #28a745,
+    info: #17a2b8,
+    warning: #ffc107,
+    danger: #dc3545
+  );
+  @each $val, $color in $theme-colors {
+    --xz-color-#{$val}: #{$color};
+    // 生成深色系
+    --xz-color-#{$val}-dark-1: #{color.scale($color, $lightness: -10%)};
+    // 生成浅色系
+    @for $i from 1 through 6 {
+      $lightness: $i * 10%;
+      $light-color: color.scale($color, $lightness: $lightness);
+      --xz-color-#{$val}-light-#{$i}: #{$light-color};
+    }
+  }
+  // 文字颜色
+  --xz-color-text-primary: #212529;
+  --xz-color-text-secondary: #6c757d;
+  --xz-color-text-disabled: #adb5bd;
+  /* 中性色 */
+  --xz-bg-color: #ffffff;
+  --xz-bg-color-page: #f2f3f5;
+  --xz-bg-color-overlay: #ffffff;
+  --xz-text-color-primary: #303133;
+  --xz-text-color-regular: #606266;
+  --xz-text-color-secondary: #909399;
+  --xz-text-color-placeholder: #a8abb2;
+  --xz-text-color-disabled: #c0c4cc;
+  /* border颜色 */
+  --xz-border-color: #dcdfe6;
+  --xz-border-color-light: #e4e7ed;
+  --xz-border-color-lighter: #ebeef5;
+  --xz-border-color-extra-light: #f2f6fc;
+  --xz-border-color-dark: #c0c4cc;
+  --xz-border-color-darker: #909399;
+  /* 填充颜色 */
+  --xz-fill-color: #ffffff;
+  --xz-fill-color-light: #f5f7fa;
+  --xz-fill-color-lighter: #fafafa;
+  --xz-fill-color-extra-light: #fafcff;
+  --xz-fill-color-dark: #ebedf0;
+  --xz-fill-color-darker: #d4d7dd;
+  --xz-fill-color-blank: #ffffff;
+  /* border 样式 */
+  --xz-border-width: 1px;
+  --xz-border-style: solid;
+  --xz-border-color-hover: var(--xz-text-color-disabled);
+  --xz-border:var(--xz-border-width) var(--xz-border-style) var(--xz-border-color);
+  --xz-border-radius-base: 4px;
+  --xz-border-radius-small: 2px;
+  --xz-border-radius-round: 16px;
+  --xz-border-radius-circle: 100%;
+  /* 字体 样式 */
+  --xz-font-size-base: 14px;
+  --xz-font-size-small: 12px;
+  --xz-font-size-extra-small: 10px;
+  --xz-font-size-medium: 14px;
+  --xz-font-size-large: 16px;
+  --xz-font-size-extra-large: 18px;
+  --xz-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --xz-font-weight-primary: 500;
+  /* disabled */
+  --xz-disabled-bg-color: var(--xz-fill-color-light);
+  --xz-disabled-text-color: var(--xz-text-color-disabled);
+  --xz-disabled-border-color: var(--xz-border-color-light);
+}

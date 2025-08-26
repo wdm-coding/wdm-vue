@@ -47,6 +47,15 @@
         "/vue.svg",
         "https://echarts.apache.org/zh/images/logo.png?_v_=20240226"
       ]
+    },
+    {
+      "path":"/custom-ui",
+      "title":"自定义UI组件库",
+      "bgColor":"linear-gradient( 51deg, rgba(0,217,200,0.1) 0%, rgba(0,20,237,0.4) 99%)",
+      "icon":[
+        "/vue.svg",
+        "/src/assets/images/logo.jpeg"
+      ]
     }
   ]
 }

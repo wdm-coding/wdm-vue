@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import './style.scss'
-  import { type ButtonProps } from '../types'
+  import { type ButtonProps } from './types'
   defineOptions({
     name: 'XZButton'
   })

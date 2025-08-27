@@ -83,6 +83,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'icon-view',
         name: 'IconView',
         component: () => import('@/custom-ui/pages/IconView/index.vue')
+      },
+      {
+        path: 'collapse-view',
+        name: 'CollapseView',
+        component: () => import('@/custom-ui/pages/CollapseView/index.vue')
       }
     ]
   }

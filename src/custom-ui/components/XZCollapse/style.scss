@@ -1,0 +1,57 @@
+.xz-collapse{
+  --xz-collapse-border-color:var(--xz-border-color-light);
+  --xz-collapse-header-height:40px;
+  --xz-collapse-header-bg-color:var(--xz-fill-color-blank);
+  --xz-collapse-header-text-color:var(--xz-text-color-primary);
+  --xz-collapse-header-font-size:14px; 
+  --xz-collapse-content-bg-color:var(--xz-fill-color-blank);
+  --xz-collapse-content-font-size:14px; 
+  --xz-collapse-content-text-color:var(--xz-text-color-primary);
+  --xz-collapse-disabled-text-color:var(--xz-disabled-text-color);
+  --xz-collapse-disabled-border-color:var(--xz-disabled-border-color);
+  --xz-collapse-duration:0.5s;
+  border: 1px solid var(--xz-collapse-border-color);
+  user-select: none;// 点击文字没有蓝色背景色
+  .xz-collapse-item{
+    &__header{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--xz-collapse-header-height);
+      line-height: var(--xz-collapse-header-height);
+      background-color: var(--xz-collapse-header-bg-color);
+      color: var(--xz-collapse-header-text-color);
+      font-size: var(--xz-collapse-header-font-size);
+      font-weight: 500;
+      cursor:pointer;
+      transition: border-bottom-color var(--xz-collapse-duration);
+      outline: none; // 去掉点击时的虚线框
+      border-bottom: 1px solid var(--xz-collapse-border-color);
+      padding: 0 10px;
+      &.is-disabled{
+        cursor:not-allowed;
+        color: var(--xz-collapse-disabled-text-color);
+        border-bottom: 1px solid var(--xz-collapse-disabled-border-color);
+      }
+      &.is-active{
+        border-bottom-color: transparent;
+        font-weight: 600;
+      }
+    }
+    &__wrapper{
+      will-change: height; // 开启GPU加速
+    }
+    &__content{
+      background-color: var(--xz-collapse-content-bg-color);
+      overflow: hidden;
+      box-sizing: border-box;
+      color: var(--xz-collapse-content-text-color);
+      font-size: var(--xz-collapse-content-font-size);
+      border-bottom: 1px solid var(--xz-collapse-border-color);
+      padding: 10px 10px 10px 30px;
+    }
+    .slide-fade-enter-active,.slide-fade-leave-active{
+      transition: height var(--xz-collapse-duration);
+    }
+  }
+}

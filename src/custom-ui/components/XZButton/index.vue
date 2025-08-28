@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { useTemplateRef } from 'vue'
   import './style.scss'
   import { type ButtonProps } from './types'
   import XZIcon from '../XZIcon/index.vue'

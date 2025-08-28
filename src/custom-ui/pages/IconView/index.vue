@@ -1,15 +1,5 @@
 <script setup lang="ts">
-  import child from './child.vue'
-  const state = reactive({
-    list: []
-  })
-
-  watchEffect(() => {
-    console.log('state.list',state.list)
-  })
-  watch(() => state.list,newVal => {
-    console.log('watch',newVal)
-  },{ deep: true,immediate: true })
+  import XZIcon from '@/custom-ui/components/XZIcon/index.vue'
   defineOptions({
     name: 'IconView'
   })
@@ -18,13 +8,47 @@
 
 <template>
   <div class='icon_view_wrap'>
-    <child v-model:arr="state.list" />
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">实体图标</h2>
+    <XZIcon icon="house" />
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">空心图标</h2>
+    <XZIcon icon="house" styleType="regular" />
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">图标大小</h2>
+    <XZIcon icon="house" styleType="regular" fontSize="14" />
+    <XZIcon icon="house" styleType="regular" :fontSize="16" />
+    <XZIcon icon="house" styleType="regular" fontSize="18px" />
+    <XZIcon icon="house" styleType="regular" fontSize="2vw" />
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">图标颜色</h2>
+    <XZIcon icon="house" styleType="regular" type="primary" />
+    <XZIcon icon="house" styleType="regular" type="info" />
+    <XZIcon icon="house" styleType="regular" type="danger" />
+    <XZIcon icon="house" styleType="regular" type="success" />
+    <XZIcon icon="house" styleType="regular" type="warning" />
+    <XZIcon
+      icon="house"
+      styleType="regular"
+      color="#f0f"
+    />
+    <XZIcon
+      icon="house"
+      styleType="regular"
+      color="#f00"
+    />
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">图标旋转</h2>
+    <XZIcon icon="circle-notch" spin color="#666" />
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">图标放大缩小</h2>
+    <XZIcon icon="house" styleType="regular" size="1x" />
+    <XZIcon icon="house" styleType="regular" size="3x" />
+    <XZIcon
+      icon="house"
+      styleType="regular"
+      size="5x"
+    />
   </div>
 </template>
 
 
 <style lang='scss' scoped>
 .icon_view_wrap{
-  color: red;
+  padding: 0 30px;
 }
 </style>

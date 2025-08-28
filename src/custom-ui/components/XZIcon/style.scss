@@ -1,0 +1,15 @@
+.xz-icon{
+  --xz-icon-color:inherit;
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  fill: currentColor;
+  color: var(--xz-icon-color);
+}
+
+@each $val in (primary, success, info, warning, danger) {
+  .xz-icon--#{$val} {
+    --xz-icon-color:var(--xz-color-#{$val});
+  }
+}

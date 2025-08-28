@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import './style.scss'
   import { type ButtonProps } from './types'
+  import XZIcon from '../XZIcon/index.vue'
   defineOptions({
     name: 'XZButton'
   })
@@ -13,7 +14,8 @@
     circle = false,
     loading = false,
     autofocus = false,
-    nativeType = 'button'
+    nativeType = 'button',
+    icon
   } = defineProps<ButtonProps>()
   const buttonRef = useTemplateRef('button')
 
@@ -41,6 +43,8 @@
     :autofocus="autofocus"
     :type="nativeType"
   >
+    <XZIcon v-if="loading" icon="spinner" spin />
+    <XZIcon v-if="icon" :icon="icon" />
     <span>
       <slot />
     </span>

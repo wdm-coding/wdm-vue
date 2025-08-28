@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import XZIcon from '../XZIcon/index.vue'
   import{ type CollapseItemProps } from './types.ts'
   import { collapseContextKey } from './types'
   const {
@@ -62,6 +63,7 @@
       @click="handleClick"
     >
       <slot name="title">{{ title }}</slot>
+      <XZIcon icon="chevron-down" class="header-chevron-icon" />
     </div>
     <Transition name="slide-fade" v-on="transitionEvent">
       <div v-show="isActive" class="xz-collapse-item__wrapper">

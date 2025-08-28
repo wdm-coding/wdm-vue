@@ -10,6 +10,7 @@
   --xz-collapse-disabled-text-color:var(--xz-disabled-text-color);
   --xz-collapse-disabled-border-color:var(--xz-disabled-border-color);
   --xz-collapse-duration:0.5s;
+  --xz-collapse-duration-fast:0.3s;
   border: 1px solid var(--xz-collapse-border-color);
   user-select: none;// 点击文字没有蓝色背景色
   .xz-collapse-item{
@@ -36,6 +37,13 @@
       &.is-active{
         border-bottom-color: transparent;
         font-weight: 600;
+        .header-chevron-icon{
+          transform: rotate(180deg);
+          transition: transform var(--xz-collapse-duration);
+        }
+      }
+      .header-chevron-icon{
+        transition: transform var(--xz-collapse-duration);
       }
     }
     &__wrapper{

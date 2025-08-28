@@ -49,14 +49,6 @@
       <XZButton type="info" disabled>info</XZButton>
       <XZButton type="danger" disabled>danger</XZButton>
     </div>
-    <div style="padding: 20px;display: flex;">
-      <XZButton type="default" disabled ref="buttonRef">禁用按钮</XZButton>
-      <XZButton type="primary" disabled>primary</XZButton>
-      <XZButton type="success" disabled>success</XZButton>
-      <XZButton type="warning" disabled>warning</XZButton>
-      <XZButton type="info" disabled>info</XZButton>
-      <XZButton type="danger" disabled>danger</XZButton>
-    </div>
     <h2 style="margin: 20px 0;color:var(--xz-color-primary)">loading按钮</h2>
     <div style="padding: 20px;display: flex;">
       <XZButton type="primary" :loading="loading">primary</XZButton>

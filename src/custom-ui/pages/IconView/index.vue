@@ -10,8 +10,14 @@
   <div class='icon_view_wrap'>
     <h2 style="margin: 20px 0;color:var(--xz-color-primary)">实体图标</h2>
     <XZIcon icon="house" />
+    <XZIcon icon="circle-user" />
+    <XZIcon icon="image" />
+    <XZIcon icon="comment" />
     <h2 style="margin: 20px 0;color:var(--xz-color-primary)">空心图标</h2>
     <XZIcon icon="house" styleType="regular" />
+    <XZIcon icon="circle-user" styleType="regular" />
+    <XZIcon icon="image" styleType="regular" />
+    <XZIcon icon="comment" styleType="regular" />
     <h2 style="margin: 20px 0;color:var(--xz-color-primary)">图标大小</h2>
     <XZIcon icon="house" styleType="regular" fontSize="14" />
     <XZIcon icon="house" styleType="regular" :fontSize="16" />

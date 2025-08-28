@@ -99,6 +99,7 @@
       flex: 1;
       height: 100%;
       background-color: #fff;
+      overflow: auto;
     }
   }
 }

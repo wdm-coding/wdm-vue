@@ -20,5 +20,12 @@ export const menuList = [
     icon: '',
     path: '/custom-ui/icon-view',
     key: 'IconView'
+  },
+  {
+    id: '4',
+    label: '浮层组件',
+    icon: '',
+    path: '/custom-ui/tooltip-view',
+    key: 'TooltipView'
   }
 ]

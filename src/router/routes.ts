@@ -88,6 +88,11 @@ const routes: Array<RouteRecordRaw> = [
         path: 'collapse-view',
         name: 'CollapseView',
         component: () => import('@/custom-ui/pages/CollapseView/index.vue')
+      },
+      {
+        path: 'tooltip-view',
+        name: 'TooltipView',
+        component: () => import('@/custom-ui/pages/TooltipView/index.vue')
       }
     ]
   }

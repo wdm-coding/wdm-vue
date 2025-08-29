@@ -6,7 +6,8 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@popperjs/core": ["./node_modules/@popperjs/core/dist/esm/index.js"]
     },
     /* Linting */
     "strict": true,

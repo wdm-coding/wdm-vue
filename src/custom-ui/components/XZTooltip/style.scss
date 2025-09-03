@@ -1,0 +1,7 @@
+.xz-tooltip{
+  display: inline-block;
+  &__trigger{
+    cursor: pointer;
+    user-select: none;
+  }
+}

@@ -11,5 +11,5 @@ export default function (router: Router) {
       storage.set('isDynamicRoutesLoaded', true)
       next({ ...to, replace: true })
     }
-  })     
+  })    
 }

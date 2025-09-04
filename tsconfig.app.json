@@ -22,6 +22,6 @@
     "src/**/*.tsx",
     "src/**/*.vue",
     "./auto-imports.d.ts",
-    "./components.d.ts"
-, "src/naive-view/pages/Test/components/vue-jsx.jsx"  ]
+    "./components.d.ts", "src/naive-view/pages/Test/components/vue-jsx.jsx"
+  ]
 }

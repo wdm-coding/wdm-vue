@@ -1,12 +1,14 @@
 import type { Placement } from '@popperjs/core/lib/enums'
-import type { OptionsGeneric, Modifier } from '@popperjs/core/lib/types'
+import type { Options } from '@popperjs/core/lib/popper-lite.js'
 export interface TooltipProps {
   content?: string;
   placement?: Placement;
   trigger?: 'hover' | 'click';
   manual?: boolean; // 手动控制显示隐藏
-  popperOptions?: Partial<OptionsGeneric<Modifier<any, any>>>; // 传递给popper的配置项
+  popperOptions?: Partial<Options>; // 传递给popper的配置项
   transtion?: string; // 过渡动画类名
+  delay?: number; // 显示延迟时间，单位毫秒
+  duration?: number; // 隐藏延迟时间，单位毫秒
 }
 
 export interface TooltipEmits { 

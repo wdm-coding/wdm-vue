@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import XZIcon from '@/custom-ui/components/XZIcon/index.vue'
+  import Tooltip from '@/custom-ui/components/Tooltip/Tooltip.vue'
   defineOptions({
     name: 'IconView'
   })
@@ -49,6 +50,12 @@
       styleType="regular"
       size="5x"
     />
+    <Tooltip>
+      <div>666</div>
+      <template #content>
+        <div>666</div>
+      </template> 
+    </Tooltip>
   </div>
 </template>
 

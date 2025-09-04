@@ -2,6 +2,7 @@
   import '../styles/index.css'
   import type { MenuItem } from './menu/types'
   import storage from '@/utils/storges'
+  import XZIcon from '@/custom-ui/components/XZIcon/index.vue'
   const router = useRouter()
   const route = useRoute()
   const activeMenuKey = ref<string>('')
@@ -39,7 +40,7 @@
           :class="['menu_item', activeMenuKey ===  menu.name ? 'active' : '']" 
           @click="menuItemClick(menu)"
         >
-          <router-link to="">{{ menu.meta.title }}</router-link>
+          <XZIcon v-if="menu.meta.icon" :icon="menu.meta.icon" style="margin-right: 10px;" /><router-link to="">{{ menu.meta.title }}</router-link>
         </div>
       </div>
       <div class="custom_ui_content">

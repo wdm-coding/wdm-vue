@@ -71,13 +71,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/404',
     name: 'NotFound',
     component: () => import('@/NotFound/index.vue')
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    redirect: '/404',
-    meta: {
-      hidden: true
-    }
   }
 ]
 

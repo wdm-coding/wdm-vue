@@ -5,9 +5,6 @@
   })
   const buttonRef = useTemplateRef('buttonRef')
   const loading = ref(false)
-  onMounted(() => {
-    console.log('buttonRef',buttonRef.value, buttonRef.value?.instance)
-  })
 </script>
 
 

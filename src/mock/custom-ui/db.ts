@@ -2,7 +2,7 @@ export const menuList = [
   {
     id: '1',
     label: '按钮组件',
-    icon: '',
+    icon: 'fan',
     path: '/custom-ui/button-view',
     key: 'ButtonView'
   },
@@ -10,21 +10,21 @@ export const menuList = [
   {
     id: '2',
     label: '折叠组件',
-    icon: '',
+    icon: 'laptop',
     path: '/custom-ui/collapse-view',
     key: 'CollapseView'
   },
   {
     id: '3',
     label: '图标组件',
-    icon: '',
+    icon: 'face-smile',
     path: '/custom-ui/icon-view',
     key: 'IconView'
   },
   {
     id: '4',
     label: '浮层组件',
-    icon: '',
+    icon: 'laptop-code',
     path: '/custom-ui/tooltip-view',
     key: 'TooltipView'
   }
@@ -44,7 +44,7 @@ export const mockMenuData = [
         component: 'ButtonView',
         meta: {
           title: '按钮组件',
-          icon: 'button'
+          icon: 'fan'
         }
       },
       {
@@ -54,7 +54,7 @@ export const mockMenuData = [
         component: 'IconView',
         meta: {
           title: 'ICON组件',
-          icon: 'icon'
+          icon: 'laptop'
         }
       },
       {
@@ -64,7 +64,7 @@ export const mockMenuData = [
         component: 'CollapseView',
         meta: {
           title: '折叠',
-          icon: 'collapseView'
+          icon: 'face-smile'
         }
       },
       {
@@ -74,7 +74,7 @@ export const mockMenuData = [
         component: 'TooltipView',
         meta: {
           title: '浮层组件',
-          icon: 'tooltip'
+          icon: 'laptop-code'
         }
       }
     ]

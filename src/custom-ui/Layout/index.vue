@@ -1,29 +1,27 @@
 <script setup lang="ts">
   import '../styles/index.css'
-  import { getMenuList } from '@/api/coutom-ui'
-  import type { MenuItem } from '@/custom-ui/types'
-  defineOptions({
-    name: 'CustomUILayout'
-  })
+  import type { MenuItem } from './menu/types'
+  import storage from '@/utils/storges'
   const router = useRouter()
   const route = useRoute()
   const activeMenuKey = ref<string>('')
   watch(() => route.name, newName => {
     activeMenuKey.value = newName as string
   }, { immediate: true })
-  const menuList = ref<MenuItem[]>([])
-  const getMenuListData = async () => {
-    const { code,data } = await getMenuList()
-    if(code === 0) {
-      menuList.value = data
+  const menuList = computed(() => {
+    const menuData:MenuItem[] = storage.get('menuData') || []
+    if(menuData.length > 0 && menuData[0].children && menuData[0].children.length > 0) {
+      return menuData[0].children
+    }else{
+      return []
     }
-  }
+  })
   const menuItemClick = (menu:MenuItem) => {
-    activeMenuKey.value = menu.key
+    activeMenuKey.value = menu.name
     router.push({ path: menu.path })
   }
-  onMounted(() => {
-    getMenuListData()
+  defineOptions({
+    name: 'CustomUILayout'
   })
 </script>
 
@@ -38,10 +36,10 @@
         <div 
           v-for="menu in menuList" 
           :key="menu.id" 
-          :class="['menu_item', activeMenuKey ===  menu.key ? 'active' : '']" 
+          :class="['menu_item', activeMenuKey ===  menu.name ? 'active' : '']" 
           @click="menuItemClick(menu)"
         >
-          <router-link to="">{{ menu.label }}</router-link>
+          <router-link to="">{{ menu.meta.title }}</router-link>
         </div>
       </div>
       <div class="custom_ui_content">

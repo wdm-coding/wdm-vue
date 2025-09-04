@@ -1,5 +1,4 @@
 import type { RouteRecordRaw } from 'vue-router'
-
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -69,32 +68,16 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
   {
-    path: '/custom-ui',
-    redirect: '/custom-ui/button-view',
-    name: 'CustomUILayout',
-    component: () => import('@/custom-ui/Layout/index.vue'),
-    children: [
-      {
-        path: 'button-view',
-        name: 'ButtonView',
-        component: () => import('@/custom-ui/pages/ButtonView/index.vue')
-      },
-      {
-        path: 'icon-view',
-        name: 'IconView',
-        component: () => import('@/custom-ui/pages/IconView/index.vue')
-      },
-      {
-        path: 'collapse-view',
-        name: 'CollapseView',
-        component: () => import('@/custom-ui/pages/CollapseView/index.vue')
-      },
-      {
-        path: 'tooltip-view',
-        name: 'TooltipView',
-        component: () => import('@/custom-ui/pages/TooltipView/index.vue')
-      }
-    ]
+    path: '/404',
+    name: 'NotFound',
+    component: () => import('@/NotFound/index.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/404',
+    meta: {
+      hidden: true
+    }
   }
 ]
 

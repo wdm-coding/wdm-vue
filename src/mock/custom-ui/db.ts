@@ -29,3 +29,54 @@ export const menuList = [
     key: 'TooltipView'
   }
 ]
+
+export const mockMenuData = [
+  {
+    id: 1,
+    path: '/custom-ui',
+    name: 'CustomUILayout',
+    component: 'CustomUILayout',
+    children: [
+      {
+        id: 2,
+        path: 'button-view',
+        name: 'ButtonView',
+        component: 'ButtonView',
+        meta: {
+          title: '按钮组件',
+          icon: 'button'
+        }
+      },
+      {
+        id: 3,
+        path: 'icon-view',
+        name: 'IconView',
+        component: 'IconView',
+        meta: {
+          title: 'ICON组件',
+          icon: 'icon'
+        }
+      },
+      {
+        id: 4,
+        path: 'collapse-view',
+        name: 'CollapseView',
+        component: 'CollapseView',
+        meta: {
+          title: '折叠',
+          icon: 'collapseView'
+        }
+      },
+      {
+        id: 5,
+        path: 'tooltip-view',
+        name: 'TooltipView',
+        component: 'TooltipView',
+        meta: {
+          title: '浮层组件',
+          icon: 'tooltip'
+        }
+      }
+    ]
+  }
+]

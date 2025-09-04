@@ -7,7 +7,7 @@
   const jumpDoc = (item: any) => {
     window.open(item.url)
   }
-  const jumpFramework = (item: any) => {
+  const jumpFramework = async (item: any) => {
     item.path && router.push(item.path)
   }
   const title = import.meta.env.VITE_HOME_TITLE

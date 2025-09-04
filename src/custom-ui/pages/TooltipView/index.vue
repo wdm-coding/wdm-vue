@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import XZTooltip from '@/custom-ui/components/XZTooltip/index.vue'
   import XZButton from '@/custom-ui/components/XZButton/index.vue'
+  import type { ModifierArguments, State } from '@popperjs/core/lib/types'
   const visible:Record<string,boolean> = reactive({})
   const tooltipRef = useTemplateRef<InstanceType<typeof XZTooltip>>('tooltipRef')
   const handlerVisible = () => {
@@ -17,7 +18,31 @@
   <div class='tooltip_view_wrap'>
     <h2 style="margin: 20px 0;color:var(--xz-color-primary)">hover触发</h2>
     <div class="row_item">
-      <XZTooltip v-model:visible="visible.visible1" style="margin-bottom: 20px;">
+      <XZTooltip
+        v-model:visible="visible.visible1"
+        style="margin-bottom: 20px;"
+        :popperOptions="{
+          placement: 'bottom',
+          modifiers:[
+            {
+              name: 'offset', options: { offset: [0, 8] },
+              enabled: false,
+              phase: 'main',
+              fn: function (arg0: ModifierArguments<any>): State | void {
+                throw new Error('Function not implemented.')
+              }
+            },
+            {
+              name: 'preventOverflow', options: { padding: 8 },
+              enabled: false,
+              phase: 'main',
+              fn: function (arg0: ModifierArguments<any>): State | void {
+                throw new Error('Function not implemented.')
+              }
+            },
+          ]
+        }"
+      >
         <div>我是hover触发器</div>
         <template #content>
           <div>我是内容</div>

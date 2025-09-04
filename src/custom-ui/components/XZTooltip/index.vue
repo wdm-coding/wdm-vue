@@ -10,8 +10,16 @@
     content = '',
     placement = 'right',
     trigger = 'hover',
-    manual = false
+    manual = false,
+    popperOptions,
+    transtion = 'fade'
   } = defineProps<TooltipProps>()
+  const popperOption = computed(() => {
+    return {
+      placement,
+      ...popperOptions
+    }
+  })
   const emit = defineEmits<TooltipEmits>()
   // 触发节点和的ref引用
   const triggerNode = useTemplateRef<HTMLDivElement>('triggerNode')
@@ -25,9 +33,7 @@
     if(val){
       // isVisible为true 创建popper实例
       if(triggerNode.value && popperNode.value) {
-        popperInstance.value = createPopper(triggerNode.value, popperNode.value, {
-          placement
-        })
+        popperInstance.value = createPopper(triggerNode.value, popperNode.value, popperOption.value)
       }
     }else{
       // isVisible为false 销毁popper实例
@@ -109,10 +115,18 @@
 <!-- 8.7 -->
 <template>
   <div class="xz-tooltip" v-on="outEvents" ref="containerNode">
-    <div class="xz-tooltip__trigger" ref="triggerNode" v-on="events">
+    <div
+      class="xz-tooltip__trigger"
+      ref="triggerNode"
+      v-on="events"
+    >
       <slot />
     </div>
-    <div class="xz-tooltip__popper" ref="popperNode" v-if="isVisible">
+    <div
+      class="xz-tooltip__popper"
+      ref="popperNode"
+      v-if="isVisible"
+    >
       <slot name="content">{{ content }}</slot>
     </div>
   </div>

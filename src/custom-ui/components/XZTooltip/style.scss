@@ -1,8 +1,10 @@
 .xz-tooltip{
-  display: inline-block;
   &__trigger{
     display: inline-block;
     cursor: pointer;
     user-select: none;
+  }
+  &__popper{
+    overflow: hidden;
   }
 }

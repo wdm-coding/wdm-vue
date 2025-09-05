@@ -76,6 +76,16 @@ export const mockMenuData = [
           title: '浮层组件',
           icon: 'laptop-code'
         }
+      },
+      {
+        id: 6,
+        path: 'dropdown-view',
+        name: 'DropdownView',
+        component: 'DropdownView',
+        meta: {
+          title: '下拉菜单组件',
+          icon: 'laptop-code'
+        }
       }
     ]
   }

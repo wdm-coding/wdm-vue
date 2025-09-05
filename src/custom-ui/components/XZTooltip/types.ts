@@ -9,6 +9,7 @@ export interface TooltipProps {
   transtion?: string; // 过渡动画类名
   delay?: number; // 显示延迟时间，单位毫秒
   duration?: number; // 隐藏延迟时间，单位毫秒
+  showArrow?: boolean; // 是否显示箭头
 }
 
 export interface TooltipEmits { 

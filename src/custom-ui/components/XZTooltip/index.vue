@@ -14,7 +14,8 @@
     popperOptions,
     transtion = 'fade',
     delay = 0,
-    duration = 0
+    duration = 0,
+    showArrow = true
   } = defineProps<TooltipProps>()
   const popperOption = computed(() => {
     return {
@@ -23,7 +24,7 @@
         {
           name: 'offset',
           options: {
-            offset: [0, 9]
+            offset: [0, 2]
           }
         }
       ],
@@ -157,7 +158,7 @@
         v-if="isVisible"
       >
         <slot name="content">{{ content }}</slot>
-        <div id="arrow" data-popper-arrow />
+        <div id="arrow" data-popper-arrow v-if="showArrow" />
       </div>
     </Transition>
   </div>

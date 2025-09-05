@@ -34,7 +34,7 @@
           <div>6666666666666666666666666666666666</div>
         </template>
       </XZTooltip>
-      <XZTooltip placement="right" trigger="click">
+      <XZTooltip placement="right" trigger="click" :showArrow="false">
         <div>我是click触发器--右</div>
         <template #content>
           <div>6666666666666666666666666666666666</div>

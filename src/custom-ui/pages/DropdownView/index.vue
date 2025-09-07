@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import XZDropdown from '@/custom-ui/components/XZDropdown/index.vue'
+  import XZDropdownTsx from '@/custom-ui/components/XZDropdown/index.tsx'
   import type { menuOption } from '@/custom-ui/components/XZDropdown/types'
   import { h } from 'vue'
   const menuOptions: menuOption[] = [
@@ -25,6 +26,9 @@
     <XZDropdown :showArrow="false" :menu-options="menuOptions">
       <div>测试</div>
     </XZDropdown>
+    <XZDropdownTsx :showArrow="false" :menu-options="menuOptions">
+      <div>测试tsx</div>
+    </XZDropdownTsx>
   </div>
 </template>
 

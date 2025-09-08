@@ -1,9 +1,6 @@
-import type {
-    TooltipProps
-  } from '../XZTooltip/types'
 import type {DropdownProps,menuOption} from './types'
+  import type { TooltipInstance } from '../XZTooltip/types'
 import XZTooltip from '../XZTooltip/index.vue'
- import RenderVnode from '@/custom-ui/utils/RenderVnode'
 import { Fragment } from 'vue/jsx-runtime'
 export default defineComponent({
   name: 'XZDropdownTsx',
@@ -15,8 +12,15 @@ export default defineComponent({
       type:String as PropType<DropdownProps['placement']>,
       default: 'bottom',
     },
+    hideAfterClick: Boolean,
+    trigger: {
+      type:String as PropType<DropdownProps['trigger']>,
+      default:'hover'
+    }
   },
-  setup(props,{slots}) {
+  emits: ['select','visible-change'],
+  setup(props,{slots,emit,expose}) {
+    const instance = useTemplateRef<TooltipInstance>('tooltipRef')
     const tooltipProps = computed(() => {
       const result: DropdownProps = { ...props }
       delete result.menuOptions
@@ -24,21 +28,27 @@ export default defineComponent({
       result.placement = 'bottom'
       return result
     })
-    console.log('props',props);
     const itemClick = (item: menuOption) => {
       if (item.disabled) return
-      console.log('itemClick', item)
-      // emits('select', item.key)
-      // props.hideAfterClick && instance.value?.hide()
+      emit('select', item.key)
+      props.hideAfterClick && instance.value?.hide()
     }
+    const visibleChange = (visible: boolean) => {
+      emit('visible-change', visible)
+    }
+    expose({ 
+      show: () => instance.value?.show(),
+      hide: () => instance.value?.hide()
+     })
     const optionsEle = computed(()=>{
       return props.menuOptions?.map(item=>{
         return (
           <Fragment key={item.key}>
-            {item.divided ? <div class="xz-dropdown__menu-item is-divided"></div> : null}
+            {item.divided ? <div class="xz-dropdown__divided"></div> : null}
             <div 
-              class="xz-dropdown__menu-item"
+              class={{ 'xz-dropdown__menu-item': true, 'is-disabled': item.disabled, 'is-divided': item.divided }}
               id={`xz-dropdown-item-${item.key}`}
+              onClick={() => itemClick(item)}
             >
               {item.label}
             </div>
@@ -48,7 +58,11 @@ export default defineComponent({
     })
     return ()=>(
       <div class='xz-dropdown'>
-        <XZTooltip {...tooltipProps.value}>
+        <XZTooltip 
+          {...tooltipProps.value}
+          ref='tooltipRef'
+          onChange={(visible)=>visibleChange(visible)}
+        >
           {{
             default: () => slots.default?.(),
             content: () => (

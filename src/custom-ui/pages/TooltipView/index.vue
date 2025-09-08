@@ -41,52 +41,30 @@
         </template>
       </XZTooltip>
     </div>
-    <!-- <h2 style="margin: 20px 0;color:var(--xz-color-primary)">hover触发</h2>
-    <div class="row_item">
-      <XZTooltip
-        v-model:visible="visible.visible1"
-        style="margin-bottom: 20px;"
-        :popperOptions="{
-          placement: 'bottom'
-        }"
-        :duration="500"
-        :delay="500"
-      >
-        <div>我是hover触发器</div>
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">hover触发</h2>
+    <div style="width: 500px;height: 200px;display: flex;flex-direction: column;justify-content: space-between;border: 1px solid #000;">
+      <XZTooltip placement="top">
+        <div>我是hover触发器--上</div>
         <template #content>
-          <div>Lately did you ever feel the pain In the morning rain as it soaks it to the bone</div>
+          <div>6666666666666666666666666666666666</div>
         </template>
       </XZTooltip>
-      <XZTooltip v-model:visible="visible.visible2" placement="top">
-        <div>我是hover触发器</div>
+      <XZTooltip placement="bottom">
+        <div>我是hover触发器--下</div>
         <template #content>
-          <div>Lately did you ever feel the pain In the morning rain as it soaks it to the bone</div>
+          <div>6666666666666666666666666666666666</div>
         </template>
       </XZTooltip>
-    </div>
-    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">click触发</h2>
-    <div class="row_item">
-      <XZTooltip v-model:visible="visible.visible3" style="margin-bottom: 20px;" trigger="click">
-        <div>我是click触发器</div>
+      <XZTooltip placement="left">
+        <div>我是hover触发器--左</div>
         <template #content>
-          <div>Lately did you ever feel the pain In the morning rain as it soaks it to the bone</div>
+          <div>6666666666666666666666666666666666</div>
         </template>
       </XZTooltip>
-      <XZTooltip
-        v-model:visible="visible.visible4"
-        placement="top"
-        style="margin-bottom: 20px;"
-        trigger="click"
-      >
-        <div>我是click触发器</div>
+      <XZTooltip placement="right" :showArrow="false">
+        <div>我是hover触发器--右</div>
         <template #content>
-          <div>Lately did you ever feel the pain In the morning rain as it soaks it to the bone</div>
-        </template>
-      </XZTooltip>
-      <XZTooltip v-model:visible="visible.visible5" placement="left" trigger="click">
-        <div>我是click触发器</div>
-        <template #content>
-          <div>Lately did you ever feel the pain In the morning rain as it soaks it to the bone</div>
+          <div>6666666666666666666666666666666666</div>
         </template>
       </XZTooltip>
     </div>
@@ -105,7 +83,7 @@
         </template>
       </XZTooltip>
       <XZButton @click="handlerVisible" style="width:200px">我是手动触发器</XZButton>
-  </div> -->
+    </div>
   </div>
 </template>
 

@@ -17,7 +17,7 @@
     // 生成深色系
     --xz-color-#{$val}-dark-1: #{color.scale($color, $lightness: -10%)};
     // 生成浅色系
-    @for $i from 1 through 6 {
+    @for $i from 1 through 9 {
       $lightness: $i * 10%;
       $light-color: color.scale($color, $lightness: $lightness);
       --xz-color-#{$val}-light-#{$i}: #{$light-color};

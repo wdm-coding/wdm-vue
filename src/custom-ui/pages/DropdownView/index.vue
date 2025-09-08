@@ -15,6 +15,13 @@
       divided: true
     }
   ]
+  const dropRef = useTemplateRef<InstanceType<typeof XZDropdown>>('dropRef')
+  const selectHandler = (key: string) => {
+    console.log(key)
+  }
+  onMounted(() => {
+    dropRef.value?.show()
+  })
   defineOptions({
     name: 'DropdownView'
   })
@@ -23,10 +30,17 @@
 
 <template>
   <div class='dropdown_view_wrap'>
-    <XZDropdown :showArrow="false" :menu-options="menuOptions">
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">vue组件式</h2>
+    <XZDropdown :showArrow="false" :menu-options="menuOptions" style="margin-bottom: 20px;">
       <div>测试</div>
     </XZDropdown>
-    <XZDropdownTsx :showArrow="false" :menu-options="menuOptions">
+    <h2 style="margin: 20px 0;color:var(--xz-color-primary)">vue-tsx</h2>
+    <XZDropdownTsx
+      :showArrow="false"
+      :menu-options="menuOptions"
+      ref="dropRef"
+      @select="selectHandler"
+    >
       <div>测试tsx</div>
     </XZDropdownTsx>
   </div>

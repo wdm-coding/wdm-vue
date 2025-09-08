@@ -28,6 +28,7 @@
     props.hideAfterClick && instance.value?.hide()
   }
   defineExpose<DropdownInstance>({
+    // 通过函数返回方法，使用了闭包，使得方法在调用时可以访问到instance.value。
     show: () => instance.value?.show(),
     hide: () => instance.value?.hide()
   })
@@ -44,8 +45,17 @@
       <template #content>
         <div class="xz-dropdown__menu">
           <template v-for="item in props.menuOptions" :key="item.key">
-            <div v-if="item.divided" class="xz-dropdown__divided" role="separator" />
-            <div class="xz-dropdown__menu-item" @click="itemClick(item)">
+            <div
+              v-if="item.divided"
+              class="xz-dropdown__divided"
+              role="separator"
+            />
+            <div
+              class="xz-dropdown__menu-item"
+              :class="{ 'is-disabled': item.disabled, 'is-divided': item.divided }"
+              :id="`dropdown-item-${item.key}`"
+              @click="itemClick(item)"
+            >
               <RenderVnode :v-node="item.label" />
             </div>
           </template>

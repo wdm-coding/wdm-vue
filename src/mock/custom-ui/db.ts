@@ -1,35 +1,3 @@
-export const menuList = [
-  {
-    id: '1',
-    label: '按钮组件',
-    icon: 'fan',
-    path: '/custom-ui/button-view',
-    key: 'ButtonView'
-  },
-  
-  {
-    id: '2',
-    label: '折叠组件',
-    icon: 'laptop',
-    path: '/custom-ui/collapse-view',
-    key: 'CollapseView'
-  },
-  {
-    id: '3',
-    label: '图标组件',
-    icon: 'face-smile',
-    path: '/custom-ui/icon-view',
-    key: 'IconView'
-  },
-  {
-    id: '4',
-    label: '浮层组件',
-    icon: 'laptop-code',
-    path: '/custom-ui/tooltip-view',
-    key: 'TooltipView'
-  }
-]
-
 export const mockMenuData = [
   {
     id: 1,
@@ -84,6 +52,16 @@ export const mockMenuData = [
         component: 'DropdownView',
         meta: {
           title: '下拉菜单组件',
+          icon: 'laptop-code'
+        }
+      },
+      {
+        id: 7,
+        path: 'message-view',
+        name: 'MessageView',
+        component: 'MessageView',
+        meta: {
+          title: '消息反馈组件',
           icon: 'laptop-code'
         }
       }

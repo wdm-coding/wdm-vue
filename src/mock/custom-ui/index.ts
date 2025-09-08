@@ -1,5 +1,5 @@
 import type { MockMethod } from 'vite-plugin-mock'
-import { menuList,mockMenuData } from './db'
+import { mockMenuData } from './db'
 export default [
   {
     url: '/api/customUi/menuList',

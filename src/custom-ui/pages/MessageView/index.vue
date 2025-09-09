@@ -1,5 +1,17 @@
 <script setup lang="ts">
-  import XZMessage from '@/custom-ui/components/XZMessage/index.vue'
+  import { createMessage } from '@/custom-ui/components/XZMessage/method.ts'
+  createMessage({
+    message: '777', showClose: true, duration: 0, type: 'success' 
+  })
+  createMessage({
+    message: '888', showClose: true, duration: 0, type: 'danger' 
+  })
+  createMessage({
+    message: '999', showClose: true, duration: 0, type: 'info' 
+  })
+  createMessage({
+    message: '666', showClose: true, duration: 0, type: 'warning' 
+  })
   defineOptions({
     name: 'MessageView'
   })
@@ -8,7 +20,7 @@
 
 <template>
   <div class='comName_wrap'>
-    <XZMessage message="666" showClose />
+    Message
   </div>
 </template>
 

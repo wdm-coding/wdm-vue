@@ -69,7 +69,7 @@
     }
   }
   .fade-enter-active, .fade-leave-active {
-    transition: opacity var(--xz-transtion-duration);
+    transition: opacity var(--xz-transition-duration);
   }
   .fade-enter-from, .fade-leave-to {
     opacity: 0;

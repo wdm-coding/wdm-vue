@@ -5,7 +5,7 @@ import useZIndex from '../hooks/useZIndex'
 // 创建实例数组
 let seed = 1 // 定义一个种子，用于生成唯一标识符
 const instances: MessageContext[] = shallowReactive([]) // 创建一个响应式数组，用于存储实例对象
-export const createMessage = (props: CreateMessageProps) => {
+const createMessage = (props: CreateMessageProps) => {
   const { nextZIndex } = useZIndex() // 调用useZIndex函数，但不使用返回值
   const id = `message_${seed++}` // 生成唯一标识符，并递增种子值
   const container = document.createElement('div') // 创建一个容器元素
@@ -40,12 +40,20 @@ export const createMessage = (props: CreateMessageProps) => {
   instances.push(instance) // 将实例对象添加到数组中
   return instance // 返回实例对象
 }
-
+//  获取最后一个实例对象的底部偏移量，暂时返回0
 export const getLastBottomOffset = (id:string) => {// 获取最后一个实例对象的底部偏移量，暂时返回0
   const idx = instances.findIndex(instance => instance.id === id) // 查找实例数组中唯一标识符匹配的索引值
   if(idx <= 0) return 0 // 如果找不到，则返回0
   const prevInstance = instances[idx - 1] // 获取上一个实例对象
   return prevInstance.vm.exposed!.bottomOffset.value
 }
-
-// 3-00:25:00
+// 定义一个destoryAll函数，用于销毁所有实例对象
+export const destoryAll = () => {
+  document.querySelectorAll('.xz-message').forEach(el => el.remove())
+  instances.forEach(instance => {
+    instance.vm.exposed!.hideTransition.value = true
+    instance.vm.exposed!.visible.value = false
+  })
+  instances.splice(0)
+}
+export default createMessage

@@ -3,7 +3,7 @@
   import type { MessageProps } from './types'
   import RenderVnode from '@/custom-ui/utils/RenderVnode.ts'
   import XZIcon from '@/custom-ui/components/XZIcon/index.vue'
-  import { getLastBottomOffset } from './method.ts'
+  import { getLastBottomOffset } from './index.ts'
   import useEventListener from '../hooks/useEventListener'
   const props = withDefaults(defineProps<MessageProps>(),{
     type: 'info',
@@ -69,12 +69,14 @@
   const destoryComponent = () => {
     props.onDestory()
   }
+  const hideTransition = ref(false)
   onUnmounted(() => {
     if(timer.value) clearTimeout(timer.value)
   })
   defineExpose({
     bottomOffset,
-    visible
+    visible,
+    hideTransition
   })
   defineOptions({
     name: 'MessageConstructor'

@@ -12,7 +12,8 @@ export default defineConfig([
 			'node_modules',
 			'.vscode',
 			'auto-imports.d.ts',
-			'components.d.ts'
+			'components.d.ts',
+			'docs'
 		]
 	},
 	{

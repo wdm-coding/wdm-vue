@@ -69,14 +69,12 @@
   const destoryComponent = () => {
     props.onDestory()
   }
-  const hideTransition = ref(false)
   onUnmounted(() => {
     if(timer.value) clearTimeout(timer.value)
   })
   defineExpose({
     bottomOffset,
-    visible,
-    hideTransition
+    visible
   })
   defineOptions({
     name: 'MessageConstructor'

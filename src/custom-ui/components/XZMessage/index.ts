@@ -51,7 +51,6 @@ export const getLastBottomOffset = (id:string) => {// 获取最后一个实例�
 export const destoryAll = () => {
   document.querySelectorAll('.xz-message').forEach(el => el.remove())
   instances.forEach(instance => {
-    instance.vm.exposed!.hideTransition.value = true
     instance.vm.exposed!.visible.value = false
   })
   instances.splice(0)

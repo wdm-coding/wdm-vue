@@ -9,7 +9,7 @@ export default function useClickOutside(el: ElementType, callback: (event: Mouse
   onMounted(() => {
     document.addEventListener('click', handleClickOutside)
   })
-  onUnmounted(() => {
+  onBeforeUnmount(() => {
     document.removeEventListener('click', handleClickOutside)
   })
 }

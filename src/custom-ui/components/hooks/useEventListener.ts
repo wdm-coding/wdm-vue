@@ -15,7 +15,7 @@ export default function useEventListener(
       target.addEventListener(eventType, callback)
     }
   })
-  onUnmounted(() => {
+  onBeforeUnmount(() => {
     unref(target)?.removeEventListener(eventType, callback)
   })
 }

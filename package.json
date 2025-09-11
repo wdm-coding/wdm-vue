@@ -12,7 +12,10 @@
     "lint:lint-staged": "lint-staged",
     "prepare": "husky install",
     "commit": "git-cz",
-    "test": "vitest"
+    "test": "vitest",
+    "docs": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",
@@ -63,6 +66,7 @@
     "vite-plugin-monaco-editor-esm": "^2.0.2",
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-plugin-vue-devtools": "^7.7.7",
+    "vitepress": "^2.0.0-alpha.12",
     "vitest": "^3.2.4",
     "vue-tsc": "^2.2.10"
   },

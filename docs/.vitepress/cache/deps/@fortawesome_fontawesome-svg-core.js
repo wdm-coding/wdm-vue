@@ -26,3 +26,4 @@ export {
   text,
   toHtml$1 as toHtml
 };
+//# sourceMappingURL=@fortawesome_fontawesome-svg-core.js.map

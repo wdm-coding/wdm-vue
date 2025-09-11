@@ -7,10 +7,7 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 body{
-  font-family: var(--xz-font-family);
   font-weight: 400;
-  font-size: var(--xz-font-size-base);
-  color: var(--xz-text-color-primary);
   -webkit-font-smoothing: antialiased; /* 使字体在webkit内核浏览器上更清晰 */
   -moz-osx-font-smoothing: grayscale; /* 使字体在moz内核浏览器上更清晰 */
   -webkit-tap-highlight-color: transparent; /* 去除移动端点击高亮 */

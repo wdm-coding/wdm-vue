@@ -2,7 +2,6 @@
   import './style.scss'
   import { type ButtonProps } from './types'
   import XZIcon from '../XZIcon/index.vue'
-  import { useTemplateRef } from 'vue'
   defineOptions({
     name: 'XZButton'
   })

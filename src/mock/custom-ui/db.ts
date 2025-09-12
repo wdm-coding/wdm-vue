@@ -64,6 +64,16 @@ export const mockMenuData = [
           title: '消息反馈组件',
           icon: 'laptop-code'
         }
+      },
+      {
+        id: 8,
+        path: 'input-view',
+        name: 'InputView',
+        component: 'InputView',
+        meta: {
+          title: 'Input组件',
+          icon: 'laptop-code'
+        }
       }
     ]
   }

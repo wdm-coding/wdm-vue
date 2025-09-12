@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import createMessage,{ destoryAll } from '@/custom-ui/components/XZMessage/index'
-  destoryAll()
   createMessage({
     message: '777', showClose: true, duration: 0, type: 'success' 
   })
@@ -21,6 +20,9 @@
   })
   createMessage({
     message: '777', showClose: true, duration: 0, type: 'info' 
+  })
+  onBeforeUnmount(() => {
+    destoryAll()
   })
   defineOptions({
     name: 'MessageView'

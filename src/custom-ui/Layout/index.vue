@@ -21,6 +21,10 @@
     activeMenuKey.value = menu.name
     router.push({ path: menu.path })
   }
+  const reloadPage = () => {
+    storage.clear()
+    location.reload()
+  }
   defineOptions({
     name: 'CustomUILayout'
   })
@@ -31,6 +35,7 @@
   <div class='custom_ui_layout_wrap'>
     <div class='custom_ui_header'>
       自定义组件库
+      <XZIcon icon="rotate-right" @click="reloadPage" style="cursor: pointer;" />
     </div>
     <div class="custom_ui_main">
       <div class="custom_ui_menu">

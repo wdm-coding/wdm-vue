@@ -84,6 +84,16 @@ export const mockMenuData = [
           title: 'Switch组件',
           icon: 'laptop-code'
         }
+      },
+      {
+        id: 9,
+        path: 'select-view',
+        name: 'SelectView',
+        component: 'SelectView',
+        meta: {
+          title: 'Select组件',
+          icon: 'laptop-code'
+        }
       }
     ]
   }

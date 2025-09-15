@@ -1,7 +1,8 @@
 // 定义组件的 props 
 export type InputType = 'text' | 'password' | 'textarea' | 'number' | 'email' | 'tel' | 'url' | 'search';
 export interface InputProps {
-  type: InputType;
+  value: string | null;
+  type?: InputType;
   size?: 'default' | 'large' | 'small' | 'mini';
   disabled?: boolean;
   clearable?: boolean;

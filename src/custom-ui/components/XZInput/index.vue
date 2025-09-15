@@ -2,7 +2,7 @@
   import './style.scss'
   import type { InputProps,InputEmits } from './types'
   import XZIcon from '@/custom-ui/components/XZIcon/index.vue'
-  const innerValue = defineModel<string>('value')
+  const innerValue = defineModel<string | null>('value')
   const props = withDefaults(defineProps<InputProps>(), {
     type: 'text',
     size: 'default',

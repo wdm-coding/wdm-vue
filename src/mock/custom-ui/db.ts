@@ -86,12 +86,22 @@ export const mockMenuData = [
         }
       },
       {
-        id: 9,
+        id: 10,
         path: 'select-view',
         name: 'SelectView',
         component: 'SelectView',
         meta: {
           title: 'Select组件',
+          icon: 'laptop-code'
+        }
+      },
+      {
+        id: 11,
+        path: 'form-view',
+        name: 'FormView',
+        component: 'FormView',
+        meta: {
+          title: '表单组件',
           icon: 'laptop-code'
         }
       }

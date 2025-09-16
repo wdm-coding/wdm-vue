@@ -104,6 +104,7 @@
   const containerNode = useTemplateRef<HTMLDivElement>('containerNode')
   useClickOutside(containerNode, () => {
     trigger === 'click' && isVisible.value && !manual && close()
+    emit('click-outside')
   })
   // 在非手动模式下，调用attachEvents方法绑定事件
   if(!manual){

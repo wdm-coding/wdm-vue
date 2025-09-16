@@ -2,7 +2,7 @@ import type { MenuItem } from './types'
 import type {
  Router, RouteRecordNameGeneric, RouteRecordRaw 
 } from 'vue-router'
-import { getMenuList } from '@/api/coutom-ui'
+import { getMenuList } from '@/api/custom-ui'
 import storage from '@/utils/storges'
 // 将后端菜单数据转换为路由配置
 export function transformRoutes(menuData:MenuItem[]):RouteRecordRaw[] {

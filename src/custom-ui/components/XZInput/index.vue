@@ -1,6 +1,8 @@
 <script setup lang='ts'>
   import './style.scss'
-  import type { InputProps,InputEmits } from './types'
+  import type {
+    InputProps,InputEmits,InputInstance 
+  } from './types'
   import XZIcon from '@/custom-ui/components/XZIcon/index.vue'
   const innerValue = defineModel<string | null>('value')
   const props = withDefaults(defineProps<InputProps>(), {
@@ -12,7 +14,7 @@
     autofocus: false
   })
   const emit = defineEmits<InputEmits>()
-  const isFocus = ref(false)
+  const isFocus = ref(props.autofocus)
   const showClear = computed(() => !props.disabled && props.clearable && !!innerValue.value && isFocus.value)
   const handlerInput = (e: Event) => {
     emit('input', (e.target as HTMLInputElement).value)
@@ -47,7 +49,7 @@
       (props.type === 'password' || props.type === 'text') &&
       !!innerValue.value 
   })
-  const inputRef = useTemplateRef<HTMLInputElement | HTMLTextAreaElement>('inputRef')
+  const inputRef = useTemplateRef<InputInstance>('inputRef')
   const togglePasswordVisible = () => {
     passwordVisible.value = !passwordVisible.value
     keepFocus()
@@ -79,7 +81,8 @@
       'is-prepend': $slots.prepend,
       'is-append': $slots.append,
       'is-prefix': $slots.prefix,
-      'is-suffix': $slots.suffix
+      'is-suffix': $slots.suffix,
+      'is-focus':isFocus
     }"
   >
     <template v-if="type !== 'textarea'">

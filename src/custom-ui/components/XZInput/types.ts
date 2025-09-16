@@ -25,5 +25,6 @@ export interface InputEmits {
 }
 // 定义组件的实例类型
 export interface InputInstance {
-  ref: HTMLInputElement | HTMLTextAreaElement
+  ref: HTMLInputElement | HTMLTextAreaElement,
+  focus: () => void;
 }

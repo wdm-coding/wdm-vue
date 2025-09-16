@@ -6,6 +6,10 @@ export interface SelectOption {
   value: string | number,
   disabled?: boolean
 }
+// 渲染标签的函数类型
+export type RenderLabelFunc = (option:SelectOption) => VNode;
+export type FilterFunc = (query: string,options:SelectOption[]) => SelectOption[];
+export type RemoteFunc = (query: string) => Promise<SelectOption[]>
 // 组件属性
 export interface SelectProps{
   value: string | number,
@@ -13,10 +17,11 @@ export interface SelectProps{
   placeholder?: string,
   disabled?: boolean,
   clearable?: boolean,
-  renderLabel?: (option: SelectOption) => VNode,
+  renderLabel?: RenderLabelFunc,
   filterable?: boolean,
-  filterMethod?: (query: string, option: SelectOption) => boolean,
-  remoteMethod?: (query: string) => Promise<SelectOption[]>
+  filterMethod?: FilterFunc,
+  remote?: boolean,
+  remoteMethod?: RemoteFunc
 }
 
 export interface SelectEmits{
@@ -27,5 +32,9 @@ export interface SelectEmits{
 
 export interface SelectStates {
   inputValue: string | null,
-  selectOption:null | SelectOption
+  selectOption:null | SelectOption,
+  mouseHover: boolean,
+  empty: boolean,
+  loading: boolean,
+  highlightIndex: number,
 }

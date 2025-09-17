@@ -10,10 +10,7 @@
       value: '4', label: '选项四', disabled: true 
     }
   ])
-  const selectValue = ref('2')
-  setTimeout(() => {
-    selectValue.value = '3'
-  },1500)
+  const selectValue = ref()
   const renderLabel = (option:any) => {
     return h('span', {
       style: {

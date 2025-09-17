@@ -4,6 +4,11 @@
     InputProps,InputEmits,InputInstance 
   } from './types'
   import XZIcon from '@/custom-ui/components/XZIcon/index.vue'
+  import { formItemContextKey } from '@/custom-ui/components/XZForm/types'
+  const formItemContext =  inject(formItemContextKey,undefined)
+  const runValidation = (trigger?:string) => {
+    formItemContext?.validate?.(trigger)
+  }
   const innerValue = defineModel<string | null>('value')
   const props = withDefaults(defineProps<InputProps>(), {
     type: 'text',
@@ -18,6 +23,7 @@
   const showClear = computed(() => !props.disabled && props.clearable && !!innerValue.value && isFocus.value)
   const handlerInput = (e: Event) => {
     emit('input', (e.target as HTMLInputElement).value)
+    runValidation('input')
   }
   const handleFocus = (e: Event) => {
     emit('focus', (e.target as HTMLInputElement).value)
@@ -26,15 +32,18 @@
   const handleBlur = (e: Event) => {
     emit('blur', (e.target as HTMLInputElement).value)
     isFocus.value = false
+    runValidation('blur')
   }
   const textAreaHandleBlur = (e: Event) => {
     emit('blur', (e.target as HTMLInputElement).value)
+    runValidation('blur')
   }
   const textAreaHandleFocus = (e: Event) => {
     emit('focus', (e.target as HTMLInputElement).value)
   }
   const handlerChange = (e: Event) => {
     emit('change', (e.target as HTMLInputElement).value)
+    runValidation('change')
   }
   const clearHandle = () => {
     innerValue.value = ''

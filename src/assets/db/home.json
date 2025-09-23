@@ -56,6 +56,15 @@
         "/vue.svg",
         "/src/assets/images/logo.jpeg"
       ]
+    },
+    {
+      "path":"/webgl",
+      "title":"WEB GL",
+      "bgColor":"linear-gradient( 51deg, rgba(12,11,20,0.1) 0%, rgba(212,120,27,0.4) 99%)",
+      "icon":[
+        "/vue.svg",
+        "https://canada1.discourse-cdn.com/flex035/uploads/threejs/original/2X/c/c74c5243388bbfa21a39c3e824ddba702a623dec.png"
+      ]
     }
   ]
 }

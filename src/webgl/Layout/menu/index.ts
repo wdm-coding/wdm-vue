@@ -2,7 +2,7 @@ import type { MenuItem } from './types'
 import type {
  Router, RouteRecordNameGeneric, RouteRecordRaw 
 } from 'vue-router'
-import { getMenuList } from '@/api/custom-ui'
+import { getMenuList } from '@/api/webgl'
 import storage from '@/utils/storges'
 // 将后端菜单数据转换为路由配置
 export function transformRoutes(menuData:MenuItem[]):RouteRecordRaw[] {
@@ -16,13 +16,13 @@ export function transformRoutes(menuData:MenuItem[]):RouteRecordRaw[] {
       route.meta = { ...menu.meta }
     }
     if (menu.component) {
-      if(menu.component === 'CustomUILayout'){
-        route.component = () => import('@/custom-ui/Layout/index.vue')
+      if(menu.component === 'WebglLayout'){
+        route.component = () => import('@/webgl/Layout/index.vue')
       } else {
-        route.component = () => import(`@/custom-ui/pages/${menu.component}/index.vue`)
+        route.component = () => import(`@/webgl/pages/${menu.component}/index.vue`)
       }
       if(!route.component){
-        console.error(`组件路径@/custom-ui/pages/${menu.component}/index.vue不存在，请检查！`)
+        console.error(`组件路径@/webgl/pages/${menu.component}/index.vue不存在，请检查！`)
       }
     }
     if (menu.children) {

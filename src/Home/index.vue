@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { docUrl, framework } from '@/assets/db/home.json'
+  import storage from '@/utils/storges'
   const router = useRouter()
   defineOptions({
     name: 'Home'
@@ -8,7 +9,24 @@
     window.open(item.url)
   }
   const jumpFramework = async (item: any) => {
-    item.path && router.push(item.path)
+    console.log('jumpFramework', item.path)
+    switch (item.path) {
+      case '/custom-ui':
+        storage.set('active-modules', 'custom-ui')
+        storage.set('isDynamicRoutesLoaded', false)
+        storage.set('menuData', [])
+        router.push(item.path)
+        break
+      case '/webgl':
+        storage.set('active-modules', 'webgl')
+        storage.set('isDynamicRoutesLoaded', false)
+        storage.set('menuData', [])
+        router.push(item.path)
+        break
+      default:
+        router.push(item.path)
+        break
+    }
   }
   const title = import.meta.env.VITE_HOME_TITLE
 </script>

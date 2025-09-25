@@ -6,6 +6,14 @@
   import type {
     Scene, PerspectiveCamera, WebGLRenderer, Mesh, BoxGeometry, MeshBasicMaterial,MeshLambertMaterial
   } from 'three'
+  import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
+  // 实例化一个gui对象
+  const gui = new GUI()
+  const guiParams = {
+    sphereColor: 0x0000ff,
+    shininess: 20,
+    specularColor: 0x444444
+  }
   const container = useTemplateRef<HTMLDivElement>('container')
   let scene: Scene
   let camera: PerspectiveCamera
@@ -19,87 +27,39 @@
     container.value.appendChild( stats.dom )
     // 1. 创建场景
     scene = new THREE.Scene()
-    scene.background = new THREE.Color(0x000000)
-    // 2. 添加长方体
-    const geometry = new THREE.BoxGeometry(100,100,100) // 创建几何体
-    // 创建漫反射材质
-    const material = new THREE.MeshLambertMaterial({ 
-      color: 0x00ff00 // 绿色
-    })
-    const mesh = new THREE.Mesh(geometry, material)
-    mesh.position.set(0,0,0)
-    scene.add(mesh)
     // 3. 添加球体
-    const sphereGeometry = new THREE.SphereGeometry(50,50,20) // 创建球体几何体
-    const sphereMaterial = new THREE.MeshLambertMaterial({ 
-      color: 0x0000ff, // 蓝色
-      wireframe: true // 线框模式
+    const sphereGeometry = new THREE.SphereGeometry(50,50,50) // 创建球体几何体
+    const sphereMaterial = new THREE.MeshPhongMaterial({ 
+      color: 0x0000fff, // 蓝色
+      shininess: 20, // 高光值
+      specular: 0x444444 // 高光颜色
+    })
+    gui.addColor(guiParams, 'sphereColor').name('球体颜色').onChange(() => {
+      sphereMaterial.color.set(guiParams.sphereColor)
+    })
+    gui.add(guiParams, 'shininess', 0, 100).name('高光值').onChange(() => {
+      sphereMaterial.shininess = guiParams.shininess
+    })
+    gui.addColor(guiParams, 'specularColor').name('高光颜色').onChange(() => {
+      sphereMaterial.specular.set(guiParams.specularColor)
     })
     const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial)
-    sphereMesh.position.set(150,0,0)
+    sphereMesh.position.set(0,0,0)
+    gui.add(sphereMesh.position, 'x', -180, 180)
+    gui.add(sphereMesh.position, 'y', -180, 180)
+    gui.add(sphereMesh.position, 'z', -180, 180)
     scene.add(sphereMesh)
-    // 4. 添加圆柱体
-    const cylinderGeometry = new THREE.CylinderGeometry(50,50,100,20) // 创建圆柱体几何体
-    const cylinderMaterial = new THREE.MeshLambertMaterial({ 
-      color: 0xff0000, // 红色
-      wireframe: true // 线框模式
-    })
-    const cylinderMesh = new THREE.Mesh(cylinderGeometry, cylinderMaterial)
-    cylinderMesh.position.set(-150,0,0)
-    scene.add(cylinderMesh)
-    // 5. 添加矩形平面
-    const planeGeometry = new THREE.PlaneGeometry(200,200) // 创建平面几何体
-    const planeMaterial = new THREE.MeshLambertMaterial({ 
-      color: 0xffff00, // 黄色
-      side: THREE.DoubleSide // 双面可见
-    })
-    const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial)
-    planeMesh.position.set(100,100,-100)
-    scene.add(planeMesh)
-    // 6.添加圆形平面
-    const circleGeometry = new THREE.CircleGeometry(50,50) // 创建圆形几何体
-    const circleMaterial = new THREE.MeshLambertMaterial({ 
-      color: 0xff00ff, // 紫色
-      side: THREE.FrontSide
-    })
-    const circleMesh = new THREE.Mesh(circleGeometry, circleMaterial)
-    circleMesh.position.set(-100,100,-100)
-    scene.add(circleMesh)
-    // 胶囊体
-    const capsuleGeometry = new THREE.CapsuleGeometry( 30, 30, 20, 20 ) 
-    const capsuleMaterial = new THREE.MeshLambertMaterial({ 
-      color: 0xf0f0f0,
-      wireframe: true // 线框模式
-    }) 
-    const capsule = new THREE.Mesh( capsuleGeometry, capsuleMaterial ) 
-    capsule.position.set(0,150,0)
-    scene.add( capsule )
-    // 圆锥
-    const conegeometry = new THREE.ConeGeometry(15, 40, 42)
-    const conematerial = new THREE.MeshLambertMaterial({ 
-      color: 0xfff000,
-      wireframe: true // 线框模式
-    })
-    const cone = new THREE.Mesh( conegeometry, conematerial )
-    cone.position.set(0,150,100)
-    scene.add( cone )
-    // 圆环
-    const torusGeometry = new THREE.TorusGeometry( 20, 8, 26, 200 )
-    const torusMaterial = new THREE.MeshLambertMaterial({ color: 0xffff00 })
-    const torus = new THREE.Mesh( torusGeometry, torusMaterial )
-    torus.position.set(-50,150,-50)
-    scene.add( torus )
     // 6. 添加网格辅助线
     const gridHelper = new THREE.GridHelper(400, 50) // 大小500，分割线50
     scene.add(gridHelper)
     // 3. 添加点光源
-    const pointLight = new THREE.PointLight(0xffffff, 1.0)
-    pointLight.decay = 0.2 // 衰减系数 光源距离越远，光照强度衰减得越快 0 表示不衰减 1 表示线性衰减 2 表示二次方衰减
+    const pointLight = new THREE.PointLight(0xffffff, 8)
+    pointLight.decay = 0.0 // 衰减系数 光源距离越远，光照强度衰减得越快 0 表示不衰减 1 表示线性衰减 2 表示二次方衰减
     pointLight.position.set(200,200,200) // 设置光源位置
-    scene.add(pointLight) // 将光源添加到场景中
+    // scene.add(pointLight) // 将光源添加到场景中
     // 添加环境光
     const ambientLight = new THREE.AmbientLight(0xffffff, 1) // 环境光颜色、强度
-    scene.add(ambientLight) // 将环境光添加到场景中
+    // scene.add(ambientLight) // 将环境光添加到场景中
     // 添加平行光
     const directionalLight = new THREE.DirectionalLight(0xffffff, 10) // 平行光颜色、强度
     directionalLight.position.set(150,150,150) // 设置平行光位置斜45度方向
@@ -117,10 +77,13 @@
     // 设置相机位置
     camera.position.set(200,200,200) // 斜45度方向看立方体
     camera.lookAt(0, 0, 0) // 设置看向的位置 lookAt 与 position 两个点的连线即为相机看向的方向
-    // camera.lookAt(1000,0,1000)
     // 5. 创建渲染器
-    renderer = new THREE.WebGLRenderer({ antialias: true }) // 抗锯齿
+    renderer = new THREE.WebGLRenderer({ 
+      antialias: true // 抗锯齿
+    })
+    renderer.setPixelRatio(window.devicePixelRatio) // 设置像素比，防止渲染模糊
     renderer.setSize(container.value.clientWidth, container.value.clientHeight) // 设置渲染器大小
+    renderer.setClearColor(0x444444, 1) // 设置背景颜色和透明度
     container.value.appendChild(renderer.domElement) // 将渲染器添加到容器中
     // 6.辅助坐标轴
     const axesHelper = new THREE.AxesHelper(250)
@@ -128,7 +91,7 @@
     renderer.render(scene, camera) // 渲染场景和相机
     // 7. 创建相机控件
     controls = new OrbitControls(camera, renderer.domElement)
-    // controls.target.set(1000, 0, 1000) // 设置控制器指向的点
+    controls.target.set(0, 0, 0) // 设置控制器指向的点
     controls.enableDamping = true // 启用阻尼（惯性）
   }
   const animationId = ref<any|null>(null)
@@ -156,7 +119,7 @@
     renderer && renderer.dispose()
   })
   defineOptions({
-    name: 'GeometryView'
+    name: 'GuiView'
   })
 </script>
 

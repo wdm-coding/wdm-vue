@@ -84,6 +84,26 @@ export const mockMenuData = [
           title: '常见几何体',
           icon: 'fan'
         }
+      },
+      {
+        id: 9,
+        path: 'mesh-phong-view',
+        name: 'MeshPhongView',
+        component: 'MeshPhongView',
+        meta: {
+          title: '高光网格材质',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 10,
+        path: 'gui-view',
+        name: 'GuiView',
+        component: 'GuiView',
+        meta: {
+          title: 'Gui可视化界面',
+          icon: 'fan'
+        }
       }
     ]
   }

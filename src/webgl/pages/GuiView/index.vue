@@ -47,6 +47,9 @@
     posionMenu.add(sphereMesh.position, 'x', -180, 180).step(10)
     posionMenu.add(sphereMesh.position, 'y', -180, 180)
     posionMenu.add(sphereMesh.position, 'z', -180, 180)
+    posionMenu.add(sphereMesh.position, 'x', -180, 180).name('水平位置').onChange(x => {
+      sphereMesh.translateX(x)
+    })
     const colorMenu = gui.addFolder('颜色设置')
     colorMenu.close()
     colorMenu.addColor(guiParams, 'sphereColor').name('球体颜色').onChange(() => {

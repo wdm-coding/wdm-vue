@@ -9,10 +9,13 @@
   import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
   // 实例化一个gui对象
   const gui = new GUI()
+  gui.close() // 关闭gui面板
   const guiParams = {
     sphereColor: 0x0000ff,
     shininess: 20,
-    specularColor: 0x444444
+    specularColor: 0x444444,
+    side: THREE.DoubleSide,
+    bool: true
   }
   const container = useTemplateRef<HTMLDivElement>('container')
   let scene: Scene
@@ -22,6 +25,8 @@
   let stats: Stats
   const initThree = () => {
     if (!container.value) return
+    container.value.appendChild(gui.domElement)
+    gui.domElement.style.position = 'absolute'
     stats = new Stats()
     stats.dom.style.position = 'absolute'
     container.value.appendChild( stats.dom )
@@ -32,22 +37,40 @@
     const sphereMaterial = new THREE.MeshPhongMaterial({ 
       color: 0x0000fff, // 蓝色
       shininess: 20, // 高光值
-      specular: 0x444444 // 高光颜色
-    })
-    gui.addColor(guiParams, 'sphereColor').name('球体颜色').onChange(() => {
-      sphereMaterial.color.set(guiParams.sphereColor)
-    })
-    gui.add(guiParams, 'shininess', 0, 100).name('高光值').onChange(() => {
-      sphereMaterial.shininess = guiParams.shininess
-    })
-    gui.addColor(guiParams, 'specularColor').name('高光颜色').onChange(() => {
-      sphereMaterial.specular.set(guiParams.specularColor)
+      specular: 0x444444, // 高光颜色
+      side: THREE.DoubleSide // 两面可见
     })
     const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial)
     sphereMesh.position.set(0,0,0)
-    gui.add(sphereMesh.position, 'x', -180, 180)
-    gui.add(sphereMesh.position, 'y', -180, 180)
-    gui.add(sphereMesh.position, 'z', -180, 180)
+    const posionMenu = gui.addFolder('位置设置')
+    posionMenu.close()
+    posionMenu.add(sphereMesh.position, 'x', -180, 180).step(10)
+    posionMenu.add(sphereMesh.position, 'y', -180, 180)
+    posionMenu.add(sphereMesh.position, 'z', -180, 180)
+    const colorMenu = gui.addFolder('颜色设置')
+    colorMenu.close()
+    colorMenu.addColor(guiParams, 'sphereColor').name('球体颜色').onChange(() => {
+      sphereMaterial.color.set(guiParams.sphereColor)
+    })
+    colorMenu.addColor(guiParams, 'specularColor').name('高光颜色').onChange(() => {
+      sphereMaterial.specular.set(guiParams.specularColor)
+    })
+    colorMenu.add(guiParams, 'shininess', 0, 100).name('高光值').onChange(() => {
+      sphereMaterial.shininess = guiParams.shininess
+    })
+    const otherMenu = gui.addFolder('其他设置')
+    otherMenu.close()
+    otherMenu.add(guiParams, 'bool').name('显示网格辅助线').onChange(() => {
+      gridHelper.visible = guiParams.bool
+    })
+    otherMenu.add(guiParams as { side: THREE.Side }, 'side', {
+      FrontSide: THREE.FrontSide,
+      BackSide: THREE.BackSide,
+      DoubleSide: THREE.DoubleSide
+    }).name('渲染面').onChange(() => {
+      sphereMaterial.side = guiParams.side
+      sphereMaterial.needsUpdate = true // 更新材质
+    })
     scene.add(sphereMesh)
     // 6. 添加网格辅助线
     const gridHelper = new THREE.GridHelper(400, 50) // 大小500，分割线50

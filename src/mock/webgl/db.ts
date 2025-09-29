@@ -104,6 +104,16 @@ export const mockMenuData = [
           title: 'Gui可视化界面',
           icon: 'fan'
         }
+      },
+      {
+        id: 11,
+        path: 'buffer-geometry',
+        name: 'BufferGeometry',
+        component: 'BufferGeometry',
+        meta: {
+          title: '缓冲类型几何体',
+          icon: 'fan'
+        }
       }
     ]
   }

@@ -111,7 +111,17 @@ export const mockMenuData = [
         name: 'BufferGeometry',
         component: 'BufferGeometry',
         meta: {
-          title: '缓冲类型几何体',
+          title: '几何体',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 12,
+        path: 'mesh-material',
+        name: 'MeshMaterial',
+        component: 'MeshMaterial',
+        meta: {
+          title: '模型对象和材质',
           icon: 'fan'
         }
       }

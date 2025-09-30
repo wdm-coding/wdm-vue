@@ -7,9 +7,7 @@
     Scene, PerspectiveCamera, WebGLRenderer, Mesh, BoxGeometry, MeshBasicMaterial,MeshLambertMaterial
   } from 'three'
   import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
-  import {
-    mesh as baseMesh,square,sphere 
-  } from './model.ts'
+  import { model1 } from './model.ts'
   const guiParams = {
     color: 0x0000ff, // 几何体颜色
     side: THREE.DoubleSide, // 双面可见面
@@ -36,9 +34,16 @@
     // 创建场景
     scene = new THREE.Scene()
     // 添加几何体
-    // scene.add(baseMesh)
-    // scene.add(square)
-    scene.add(sphere)
+    scene.add(model1)
+    model1.position.set(0,50,0)
+    const clone = model1.clone()
+    scene.add(clone)
+    clone.position.x = 130
+    clone.material = model1.material.clone()
+    clone.geometry = model1.geometry.clone() 
+    clone.material.color.setStyle('rgb(0,255,0)')
+    clone.geometry.scale(0.4,0.4,1)
+    // clone.position.copy(model1.position)
     // 添加网格辅助线
     const gridHelper = new THREE.GridHelper(400, 50) // 大小500，分割线50
     scene.add(gridHelper)
@@ -90,21 +95,14 @@
     posionMenu.add(camera.position, 'z', -200, 200).name('相机Z轴').onChange(() => {})
     const colorMenu = gui.addFolder('颜色设置')
     colorMenu.close()
-    colorMenu.addColor(guiParams, 'color').name('几何体颜色').onChange(() => {
-      baseMesh.material.color.set(guiParams.color)
-    })
+    colorMenu.addColor(guiParams, 'color').name('几何体颜色').onChange(() => {})
     const otherMenu = gui.addFolder('其他设置')
     otherMenu.close()
     otherMenu.add(guiParams as { side: THREE.Side }, 'side', {
       FrontSide: THREE.FrontSide,
       BackSide: THREE.BackSide,
       DoubleSide: THREE.DoubleSide
-    }).name('渲染面').onChange(() => {
-      baseMesh.material.side = guiParams.side
-      baseMesh.material.needsUpdate = true // 更新材质
-      square.material.side = guiParams.side
-      square.material.needsUpdate = true // 更新材质
-    })
+    }).name('渲染面').onChange(() => {})
     otherMenu.add(guiParams, 'gridHelper').name('显示网格辅助线').onChange(() => {
       gridHelper.visible = guiParams.gridHelper
     })
@@ -116,6 +114,7 @@
   function animate() {
     controls.update()
     stats.update()
+    model1.rotation.z += 0.01
     renderer.render(scene, camera)
     animationId.value = requestAnimationFrame(animate)
   }
@@ -137,11 +136,9 @@
     renderer && renderer.dispose()
   })
   defineOptions({
-    name: 'BufferGeometry'
+    name: 'MeshMaterial'
   })
 </script>
-
-4.4
 <template>
   <div class='three-d-view'>
     <div class="wrap-text">

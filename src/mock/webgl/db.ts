@@ -124,6 +124,56 @@ export const mockMenuData = [
           title: '模型对象和材质',
           icon: 'fan'
         }
+      },
+      {
+        id: 13,
+        path: 'group-view',
+        name: 'GroupView',
+        component: 'GroupView',
+        meta: {
+          title: 'Group层级模型',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 14,
+        path: 'texture-image',
+        name: 'TextureImage',
+        component: 'TextureImage',
+        meta: {
+          title: '纹理贴图',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 15,
+        path: 'texture-uv',
+        name: 'TextureUV',
+        component: 'TextureUV',
+        meta: {
+          title: 'UV纹理坐标',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 16,
+        path: 'texture-footer',
+        name: 'TextureFooter',
+        component: 'TextureFooter',
+        meta: {
+          title: '阵列纹理贴图',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 17,
+        path: 'texture-animate',
+        name: 'TextureAnimate',
+        component: 'TextureAnimate',
+        meta: {
+          title: '纹理UV动画',
+          icon: 'fan'
+        }
       }
     ]
   }

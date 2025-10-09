@@ -7,11 +7,11 @@
     Scene, PerspectiveCamera, WebGLRenderer, Mesh, BoxGeometry, MeshBasicMaterial,MeshLambertMaterial
   } from 'three'
   import { GUI } from 'three/addons/libs/lil-gui.module.min.js'
-  import { model1 } from './model.ts'
+  import { group } from './model.ts'
   const guiParams = {
     color: 0x0000ff, // 几何体颜色
     side: THREE.DoubleSide, // 双面可见面
-    gridHelper: true, // 是否显示网格辅助线
+    gridHelper: false, // 是否显示网格辅助线
     axesHelper: true // 是否显示坐标轴辅助线
   }
   const container = useTemplateRef<HTMLDivElement>('container')
@@ -20,7 +20,6 @@
   let renderer: WebGLRenderer
   let controls: OrbitControls
   let stats: Stats
-  let clone:Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial, THREE.Object3DEventMap>
   const initThree = () => {
     if (!container.value) return
     // 实例化一个gui对象
@@ -35,20 +34,11 @@
     // 创建场景
     scene = new THREE.Scene()
     // 添加几何体
-    scene.add(model1)
-    model1.position.set(0,50,0)
-    clone = model1.clone()
-    scene.add(clone)
-    // clone.position.x = 130
-    clone.material = model1.material.clone()
-    clone.geometry = model1.geometry.clone() 
-    clone.material.color.setStyle('rgb(0,255,0)')
-    clone.geometry.scale(0.4,0.4,1)
-    clone.position.copy(model1.position)
-    clone.position.z += 50
+    scene.add(group)
     // 添加网格辅助线
     const gridHelper = new THREE.GridHelper(400, 50) // 大小500，分割线50
     scene.add(gridHelper)
+    gridHelper.visible = guiParams.gridHelper // 控制网格辅助线显示隐藏
     // 添加点光源
     const pointLight = new THREE.PointLight(0xffffff, 8)
     pointLight.decay = 0.0 // 衰减系数 光源距离越远，光照强度衰减得越快 0 表示不衰减 1 表示线性衰减 2 表示二次方衰减
@@ -64,6 +54,7 @@
     // 平行光可视化位置辅助线
     const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 10,0xff0000)
     scene.add(directionalLightHelper)
+    directionalLightHelper.visible = false // 默认不显示
     // 创建相机 透视相机（PerspectiveCamera）
     camera = new THREE.PerspectiveCamera(
       90, // 视野角度
@@ -114,8 +105,7 @@
   }
   const animationId = ref<any|null>(null)
   function animate() {
-    model1.rotation.y += 0.01
-    clone.rotation.copy(model1.rotation)
+    // group.rotation.y += 0.01 // 绕y轴旋转
     controls.update()
     stats.update()
     renderer.render(scene, camera)
@@ -139,19 +129,11 @@
     renderer && renderer.dispose()
   })
   defineOptions({
-    name: 'MeshMaterial'
+    name: 'TextureUV'
   })
 </script>
 <template>
   <div class='three-d-view'>
-    <div class="wrap-text">
-      <p>红R、绿G、蓝B分别对应坐标系的x、y、z轴</p>
-      <ul style="margin-top: 15px;margin-left: 15px;">
-        <li>旋转：拖动鼠标左键</li>
-        <li>缩放：滚动鼠标中键</li>
-        <li>平移：拖动鼠标右键</li>
-      </ul>
-    </div>
     <div ref="container" class="three-container" />
   </div>
 </template>
@@ -163,18 +145,6 @@
   .three-container {
     width: 100%;
     height: 100%;
-  }
-  .wrap-text{
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    color: #fff;
-    font-size: 14px;
-    background-color: rgba(0,0,0,0.5);
-    padding: 4px 8px;
-    border-radius: 4px;
   }
 }
 </style>

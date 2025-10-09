@@ -174,6 +174,16 @@ export const mockMenuData = [
           title: '纹理UV动画',
           icon: 'fan'
         }
+      },
+      {
+        id: 18,
+        path: 'load-gltf',
+        name: 'LoadGltf',
+        component: 'LoadGltf',
+        meta: {
+          title: '加载GLTF模型',
+          icon: 'fan'
+        }
       }
     ]
   }

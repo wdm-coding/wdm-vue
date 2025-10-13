@@ -1,13 +1,25 @@
 import * as THREE from 'three'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js' // 引入gltf加载器
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+const loadUrl = '/public/gltf/gc.gltf'
 const createMesh = () => {
-  // // 实例化加载器对象
-  // const loader = new GLTFLoader()
+  const model = new THREE.Group()
+  // 实例化加载器对象
+  const loader = new GLTFLoader()
   // // 加载模型
-  // const gltfModel = loader.load('/models/DamagedHelmet/glTF-Binary/DamagedHelmet.gltf')
-  const geometry = new THREE.BoxGeometry(100, 100, 100)
-  const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
-  const mesh = new THREE.Mesh(geometry, material)
-  return mesh
+  const gltfModel = loader.load(loadUrl,gltf => {
+    console.log(gltf)
+    gltf.scene.traverse(child => {
+      if (child instanceof THREE.Mesh) {
+        if(child.name === '低模铁皮'){
+          child.material.color.set('#00ffff')
+        }
+      }
+    })
+    model.add(gltf.scene)
+  })
+  return model
 }
+// 1. 加载器对象加载模型
+// 2. 设置相机参数，展现合适的视角
+// 3. 设置渲染器参数，渲染模型
 export const group = createMesh()

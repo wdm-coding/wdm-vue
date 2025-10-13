@@ -18,6 +18,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig(({ mode }) => {
   const { VITE_PORT,VITE_MOCK_ENABLE } = loadEnv(mode, process.cwd(), '')
   return {
+    assetsInclude: ['**/*.gltf', '**/*.glb'],
     // 配置全局scss变量
     css: {
       preprocessorOptions: {

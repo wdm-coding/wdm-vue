@@ -184,6 +184,16 @@ export const mockMenuData = [
           title: '加载GLTF模型',
           icon: 'fan'
         }
+      },
+      {
+        id: 19,
+        path: 'pbr-material',
+        name: 'PBRMaterial',
+        component: 'PBRMaterial',
+        meta: {
+          title: 'PBR材质',
+          icon: 'fan'
+        }
       }
     ]
   }

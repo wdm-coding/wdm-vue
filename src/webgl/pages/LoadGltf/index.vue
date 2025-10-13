@@ -43,31 +43,28 @@
     const pointLight = new THREE.PointLight(0xffffff, 8)
     pointLight.decay = 0.0 // 衰减系数 光源距离越远，光照强度衰减得越快 0 表示不衰减 1 表示线性衰减 2 表示二次方衰减
     pointLight.position.set(200,200,200) // 设置光源位置
-    scene.add(pointLight) // 将光源添加到场景中
+    // scene.add(pointLight) // 将光源添加到场景中
     // 添加环境光
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1) // 环境光颜色、强度
+    const ambientLight = new THREE.AmbientLight(0xffffff, 3) // 环境光颜色、强度
     scene.add(ambientLight) // 将环境光添加到场景中
     // 添加平行光
     const directionalLight = new THREE.DirectionalLight(0xffffff, 10) // 平行光颜色、强度
     directionalLight.position.set(150,150,150) // 设置平行光位置斜45度方向
-    scene.add(directionalLight) // 将平行光添加到场景中
-    // 平行光可视化位置辅助线
-    const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 10,0xff0000)
-    scene.add(directionalLightHelper)
-    directionalLightHelper.visible = false // 默认不显示
+    // scene.add(directionalLight) // 将平行光添加到场景中
     // 创建相机 透视相机（PerspectiveCamera）
     camera = new THREE.PerspectiveCamera(
       90, // 视野角度
       container.value.clientWidth / container.value.clientHeight, // 宽高比
       1, // 近剪裁面 相机距离近端截面的距离
-      2000// 远剪裁面 相机距离远端截面的距离
+      3000// 远剪裁面 相机距离远端截面的距离
     )
-    camera.position.set(100,100,100) // 斜45度方向看立方体
-    camera.lookAt(0, 0, 0) // 设置看向的位置 lookAt 与 position 两个点的连线即为相机看向的方向
+    camera.position.set(-2,68,97) // 斜45度方向看立方体
+    camera.lookAt(0, -20, 0) // 设置看向的位置 lookAt 与 position 两个点的连线即为相机看向的方向
     // 创建渲染器
     renderer = new THREE.WebGLRenderer({ 
       antialias: true // 抗锯齿
     })
+    renderer.outputColorSpace = THREE.SRGBColorSpace // 设置渲染器输出颜色空间为sRGB，确保正确的颜色显示效果
     renderer.setPixelRatio(window.devicePixelRatio) // 设置像素比，防止渲染模糊
     renderer.setSize(container.value.clientWidth, container.value.clientHeight) // 设置渲染器大小
     renderer.setClearColor(0x444444, 1) // 设置背景颜色和透明度
@@ -75,10 +72,9 @@
     // 辅助坐标轴
     const axesHelper = new THREE.AxesHelper(250)
     scene.add(axesHelper) // 添加到场景中
-    renderer.render(scene, camera) // 渲染场景和相机
     // 创建相机控件
     controls = new OrbitControls(camera, renderer.domElement)
-    controls.target.set(0, 0, 0) // 设置控制器指向的点
+    controls.target.set(0, -20, 0) // 设置控制器指向的点
     controls.enableDamping = true // 启用阻尼（惯性）
     // gui控制显示隐藏
     const posionMenu = gui.addFolder('位置设置')
@@ -105,7 +101,7 @@
   }
   const animationId = ref<any|null>(null)
   function animate() {
-    // group.rotation.y += 0.01 // 绕y轴旋转
+    // group.rotation.y += 0.005 // 绕y轴旋转
     controls.update()
     stats.update()
     renderer.render(scene, camera)

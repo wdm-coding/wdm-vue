@@ -69,7 +69,8 @@
           :class="['menu_item', activeMenuKey ===  menu.name ? 'active' : '']" 
           @click="menuItemClick(menu)"
         >
-          <XZIcon v-if="menu.meta.icon" :icon="menu.meta.icon" style="margin-right: 10px;" /><router-link to="">{{ menu.meta.title }}</router-link>
+          <XZIcon v-if="menu.meta.icon" :icon="menu.meta.icon" style="margin-right: 10px;" />
+          <router-link to="">{{ menu.meta.title }}</router-link>
         </div>
       </div>
       <div class="custom_ui_content">
@@ -115,6 +116,7 @@
       width: 200px;
       height: 100%;
       background-color: #f5f5f5;
+      overflow: auto;
       .menu_item{
         height: 40px;
         line-height: 40px;

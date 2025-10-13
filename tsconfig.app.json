@@ -9,6 +9,7 @@
       ],
       "@popperjs/core": ["./node_modules/@popperjs/core/dist/esm/index.js"]
     },
+    "types": ["three"],
     /* Linting */
     "strict": true,
     "noUnusedLocals": false, // 未使用的变量不报错

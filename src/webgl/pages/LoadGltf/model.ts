@@ -1,18 +1,17 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
-const loadUrl = '/public/gltf/gc.gltf'
+const loadUrl = '/public/three-js/gltf/gc.gltf'
 const createMesh = () => {
   const model = new THREE.Group()
   // 实例化加载器对象
   const loader = new GLTFLoader()
-  // // 加载模型
-  const gltfModel = loader.load(loadUrl,gltf => {
-    console.log(gltf)
+  // 加载模型
+  loader.load(loadUrl,gltf => {
     gltf.scene.traverse(child => {
       if (child instanceof THREE.Mesh) {
-        if(child.name === '低模铁皮'){
-          child.material.color.set('#00ffff')
-        }
+        // if(child.name === '低模铁皮'){
+        //   child.material.color.set('#00ffff')
+        // }
       }
     })
     model.add(gltf.scene)

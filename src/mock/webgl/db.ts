@@ -194,6 +194,26 @@ export const mockMenuData = [
           title: 'PBR材质',
           icon: 'fan'
         }
+      },
+      {
+        id: 20,
+        path: 'cube-texture',
+        name: 'CubeTexture',
+        component: 'CubeTexture',
+        meta: {
+          title: '环境贴图',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 21,
+        path: 'mesh-physical-material',
+        name: 'MeshPhysicalMaterial',
+        component: 'MeshPhysicalMaterial',
+        meta: {
+          title: '物理网格材质',
+          icon: 'fan'
+        }
       }
     ]
   }

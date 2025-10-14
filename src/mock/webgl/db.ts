@@ -214,6 +214,36 @@ export const mockMenuData = [
           title: '物理网格材质',
           icon: 'fan'
         }
+      },
+      {
+        id: 22,
+        path: 'download-image',
+        name: 'DownloadImage',
+        component: 'DownloadImage',
+        meta: {
+          title: '下载图像',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 23,
+        path: 'mesh-conflict',
+        name: 'MeshConflict',
+        component: 'MeshConflict',
+        meta: {
+          title: '模型闪烁(深度冲突)',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 24,
+        path: 'load-progress',
+        name: 'LoadProgress',
+        component: 'LoadProgress',
+        meta: {
+          title: '加载进度条',
+          icon: 'fan'
+        }
       }
     ]
   }

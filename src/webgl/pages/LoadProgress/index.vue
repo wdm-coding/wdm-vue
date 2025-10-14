@@ -5,7 +5,7 @@
   import type {
     Scene, PerspectiveCamera, WebGLRenderer
   } from 'three'
-  import { group } from './model.ts'
+  import { createMesh } from './model'
   const container = useTemplateRef<HTMLDivElement>('container')
   let scene: Scene
   let camera: PerspectiveCamera
@@ -13,9 +13,11 @@
   let controls: OrbitControls
   const initThree = () => {
     if (!container.value) return
+
     // 创建场景
     scene = new THREE.Scene()
     // 添加几何体
+    const group = createMesh()
     scene.add(group)
 
     //光源设置
@@ -38,13 +40,14 @@
     // 创建渲染器
     renderer = new THREE.WebGLRenderer({
       antialias: true, // 抗锯齿
-      logarithmicDepthBuffer: true // 对数深度缓冲区，用于解决Z-fighting问题
+      logarithmicDepthBuffer: true, // 对数深度缓冲区，用于解决Z-fighting问题
+      preserveDrawingBuffer: true // 保留绘图缓冲区，用于截图
       // alpha: true // 背景透明
     })
     renderer.setSize(container.value.clientWidth, container.value.clientHeight) // 设置渲染器大小
     container.value.appendChild(renderer.domElement) // 将渲染器添加到容器中
     renderer.outputColorSpace = THREE.SRGBColorSpace // 设置渲染器输出颜色空间为sRGB
-    renderer.setClearColor(0x000000, 0) // 设置渲染器背景颜色为黑色，透明度为0
+    renderer.setClearColor(0x000000, 1) // 设置渲染器背景颜色为黑色，透明度为0
     // 设置渲染器背景透明度为0，即完全透明
     // renderer.setClearAlpha(0)
     // 辅助线设置
@@ -87,14 +90,24 @@
     animationId.value && cancelAnimationFrame(animationId.value)
     renderer && renderer.dispose()
   })
-
+  // 生成图片
+  const createImage = () => {
+    const link = document.createElement('a')
+    const canves = renderer.domElement
+    link.href = canves.toDataURL('image/png')
+    link.download = 'three-d-view'
+    link.click()
+  }
   // 组件名称定义
   defineOptions({
-    name: 'MeshPhysicalMaterial'
+    name: 'LoadProgress'
   })
 </script>
 <template>
   <div class='three-d-view'>
+    <div class="progressBarContainer">
+      <div id="progressBar" />
+    </div>
     <div ref="container" class="three-container" />
   </div>
 </template>
@@ -103,6 +116,22 @@
   width: 100%;
   height: 100%;
   position: relative;
+  .progressBarContainer{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    color: #fff;
+    border: 1px solid #4c06e4;
+    width: 400px;
+    border-radius: 12px;
+    #progressBar{
+      width: 0%;
+      height: 15px;
+      background-color: #057eef;
+    }
+  }
   .three-container {
     width: 100%;
     height: 100%;

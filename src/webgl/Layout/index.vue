@@ -113,10 +113,11 @@
     height: calc(100% - 60px);
     display: flex;
     .custom_ui_menu{
-      width: 200px;
+      width: 240px;
       height: 100%;
       background-color: #f5f5f5;
       overflow: auto;
+      padding: 20px 0;
       .menu_item{
         height: 40px;
         line-height: 40px;

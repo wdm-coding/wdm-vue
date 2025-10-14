@@ -5,24 +5,26 @@
   import type {
     Scene, PerspectiveCamera, WebGLRenderer
   } from 'three'
-  import { group } from './model.ts'
+  import { model } from './model.ts'
   const container = useTemplateRef<HTMLDivElement>('container')
   let scene: Scene
   let camera: PerspectiveCamera
   let renderer: WebGLRenderer
   let controls: OrbitControls
+  let stats: Stats
   const initThree = () => {
     if (!container.value) return
     // 创建场景
     scene = new THREE.Scene()
+    
     // 添加几何体
-    scene.add(group)
+    scene.add(model)
 
     //光源设置
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8) // 平行光颜色、强度
     directionalLight.position.set(400, 200, 300) // 设置平行光位置斜45度方向
     scene.add(directionalLight) // 将平行光添加到场景中
-    const ambient = new THREE.AmbientLight(0xffffff, 10)
+    const ambient = new THREE.AmbientLight(0xffffff, 0.4)
     scene.add(ambient) // 将环境光添加到场景中
 
     // 创建相机 透视相机（PerspectiveCamera）
@@ -32,21 +34,18 @@
       1, // 近剪裁面 相机距离近端截面的距离
       3000// 远剪裁面 相机距离远端截面的距离
     )
-    camera.position.set(240.0, 240.0,240.0)
+    camera.position.set(100, 100, 100)
     camera.lookAt(0, 0, 0)
 
     // 创建渲染器
     renderer = new THREE.WebGLRenderer({
       antialias: true, // 抗锯齿
-      logarithmicDepthBuffer: true // 对数深度缓冲区，用于解决Z-fighting问题
-      // alpha: true // 背景透明
+      logarithmicDepthBuffer: true // 深度缓冲设置为对数模式，可以解决模型闪烁问题
     })
     renderer.setSize(container.value.clientWidth, container.value.clientHeight) // 设置渲染器大小
     container.value.appendChild(renderer.domElement) // 将渲染器添加到容器中
     renderer.outputColorSpace = THREE.SRGBColorSpace // 设置渲染器输出颜色空间为sRGB
-    renderer.setClearColor(0x000000, 0) // 设置渲染器背景颜色为黑色，透明度为0
-    // 设置渲染器背景透明度为0，即完全透明
-    // renderer.setClearAlpha(0)
+
     // 辅助线设置
     const axesHelper = new THREE.AxesHelper(250) // 辅助坐标轴
     scene.add(axesHelper) // 添加到场景中
@@ -90,7 +89,7 @@
 
   // 组件名称定义
   defineOptions({
-    name: 'MeshPhysicalMaterial'
+    name: 'MeshConflict'
   })
 </script>
 <template>

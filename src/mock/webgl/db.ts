@@ -244,6 +244,46 @@ export const mockMenuData = [
           title: '加载进度条',
           icon: 'fan'
         }
+      },
+      {
+        id: 25,
+        path: 'arc-vertex',
+        name: 'ArcVertex',
+        component: 'ArcVertex',
+        meta: {
+          title: '圆弧顶点绘制',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 26,
+        path: 'set-from-points',
+        name: 'SetFromPoints',
+        component: 'SetFromPoints',
+        meta: {
+          title: 'setFromPoints',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 27,
+        path: 'curve-vertex',
+        name: 'CurveVertex',
+        component: 'CurveVertex',
+        meta: {
+          title: '曲线绘制',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 27,
+        path: 'irregular-curve',
+        name: 'IrregularCurve',
+        component: 'IrregularCurve',
+        meta: {
+          title: '不规则曲线',
+          icon: 'fan'
+        }
       }
     ]
   }

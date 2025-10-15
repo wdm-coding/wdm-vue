@@ -284,6 +284,96 @@ export const mockMenuData = [
           title: '不规则曲线',
           icon: 'fan'
         }
+      },
+      {
+        id: 28,
+        path: 'trajectory-line',
+        name: 'TrajectoryLine',
+        component: 'TrajectoryLine',
+        meta: {
+          title: '飞线轨迹线',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 29,
+        path: 'curve-path',
+        name: 'CurvePath',
+        component: 'CurvePath',
+        meta: {
+          title: '曲线路径绘制',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 30,
+        path: 'tube-geometry',
+        name: 'TubeGeometry',
+        component: 'TubeGeometry',
+        meta: {
+          title: '曲线管道',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 31,
+        path: 'lathe-geometry',
+        name: 'LatheGeometry',
+        component: 'LatheGeometry',
+        meta: {
+          title: '旋转成型',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 32,
+        path: 'shape-geometry',
+        name: 'ShapeGeometry',
+        component: 'ShapeGeometry',
+        meta: {
+          title: '轮廓填充',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 33,
+        path: 'extrude-geometry',
+        name: 'ExtrudeGeometry',
+        component: 'ExtrudeGeometry',
+        meta: {
+          title: '拉伸成型与扫描成型',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 34,
+        path: 'shape-path',
+        name: 'ShapePath',
+        component: 'ShapePath',
+        meta: {
+          title: '多边形轮廓Shape',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 35,
+        path: 'edges-geometry',
+        name: 'EdgesGeometry',
+        component: 'EdgesGeometry',
+        meta: {
+          title: '模型边界线',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 36,
+        path: 'attributes-color',
+        name: 'AttributesColor',
+        component: 'AttributesColor',
+        meta: {
+          title: '顶点颜色数数据',
+          icon: 'fan'
+        }
       }
     ]
   }

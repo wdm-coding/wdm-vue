@@ -374,6 +374,46 @@ export const mockMenuData = [
           title: '顶点颜色数数据',
           icon: 'fan'
         }
+      },
+      {
+        id: 37,
+        path: 'curve-color',
+        name: 'CurveColor',
+        component: 'CurveColor',
+        meta: {
+          title: '曲线渐变色',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 38,
+        path: 'lerp-colors',
+        name: 'LerpColors',
+        component: 'LerpColors',
+        meta: {
+          title: '颜色插值',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 39,
+        path: 'gltf-points',
+        name: 'GltfPoints',
+        component: 'GltfPoints',
+        meta: {
+          title: 'Gltf顶点',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 40,
+        path: 'gltf-point-colors',
+        name: 'GltfPointColors',
+        component: 'GltfPointColors',
+        meta: {
+          title: '山脉地形高度可视化',
+          icon: 'fan'
+        }
       }
     ]
   }

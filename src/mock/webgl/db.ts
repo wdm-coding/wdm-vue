@@ -414,6 +414,26 @@ export const mockMenuData = [
           title: '山脉地形高度可视化',
           icon: 'fan'
         }
+      },
+      {
+        id: 41,
+        path: 'orthographic-camera',
+        name: 'OrthographicCamera',
+        component: 'OrthographicCamera',
+        meta: {
+          title: '正投影相机',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 42,
+        path: 'orthographic-perspective',
+        name: 'OrthographicPerspective',
+        component: 'OrthographicPerspective',
+        meta: {
+          title: '正投影与透视相机切换',
+          icon: 'fan'
+        }
       }
     ]
   }

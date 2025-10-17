@@ -109,8 +109,8 @@
     }
   }
   .custom_ui_main{
-    width: 100%;
-    height: calc(100% - 60px);
+    width: 100vw;
+    height: calc(100vh - 60px);
     display: flex;
     .custom_ui_menu{
       width: 240px;

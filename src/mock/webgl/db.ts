@@ -434,6 +434,46 @@ export const mockMenuData = [
           title: '正投影与透视相机切换',
           icon: 'fan'
         }
+      },
+      {
+        id: 43,
+        path: 'orthographic-canves',
+        name: 'OrthographicCanves',
+        component: 'OrthographicCanves',
+        meta: {
+          title: '正投影相机画布',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 44,
+        path: 'surround-box',
+        name: 'SurroundBox',
+        component: 'SurroundBox',
+        meta: {
+          title: '包围盒',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 45,
+        path: 'map-box',
+        name: 'MapBox',
+        component: 'MapBox',
+        meta: {
+          title: '地图包围盒',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 46,
+        path: 'camera-animate',
+        name: 'CameraAnimate',
+        component: 'CameraAnimate',
+        meta: {
+          title: '相机动画',
+          icon: 'fan'
+        }
       }
     ]
   }

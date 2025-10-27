@@ -5,14 +5,17 @@
   import type {
     Scene, OrthographicCamera, WebGLRenderer,PerspectiveCamera
   } from 'three'
-  import { perspective } from './camera'
-  import { createMesh } from './model'
+  import { perCamera } from '../../threejs-utils/camera'
+  import { dirLight,ambLight } from '../../threejs-utils/light'
+  import { glRender } from '../../threejs-utils/render'
+  import { createMesh,getPoints } from './model'
   const container = useTemplateRef<HTMLDivElement>('container')
   let scene: Scene
   let camera: PerspectiveCamera | OrthographicCamera
   let renderer: WebGLRenderer
   let controls: OrbitControls 
-  let s:number = 100
+  // 将管道路径点作为相机控制目标
+  const pointsArr = getPoints()
   const initThree = () => {
     if (!container.value) return
 
@@ -24,31 +27,36 @@
     scene.add(group)
 
     //光源设置
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1) // 平行光颜色、强度
-    directionalLight.position.set(100, 60, 50) // 设置平行光位置斜45度方向
+    const directionalLight = dirLight({}) // 平行光颜色、强度
     scene.add(directionalLight) // 将平行光添加到场景中
-    const ambient = new THREE.AmbientLight(0xffffff, 0.4)
-    scene.add(ambient) // 将环境光添加到场景中
+    const ambientLight = ambLight({}) // 环境光颜色、强度
+    scene.add(ambientLight) // 将环境光添加到场景中
 
     // 创建相机
-    camera = perspective(container.value.clientWidth,container.value.clientHeight)
-    camera.position.set(100, 100, 100)
+    const cameraParams = {
+      width: container.value.clientWidth,
+      height: container.value.clientHeight
+    }
+    camera = perCamera(cameraParams)
+    camera.position.set(292, 223, 185)
     camera.lookAt(0, 0, 0)
-
+    const i = 100
+    // 相机位置设置在当前点位置
+    camera.position.copy(pointsArr[i])
+    // 曲线上当前点pointsArr[i]和下一个点pointsArr[i+1]近似模拟当前点曲线切线
+    // 设置相机观察点为当前点的下一个点，相机视线和当前点曲线切线重合
+    camera.lookAt(pointsArr[i + 1])
     // 创建渲染器
-    renderer = new THREE.WebGLRenderer({
-      antialias: true, // 抗锯齿
-      logarithmicDepthBuffer: true, // 对数深度缓冲区，用于解决Z-fighting问题
-      preserveDrawingBuffer: true // 保留绘图缓冲区，用于截图
-    })
+    renderer = glRender()
+    renderer.setPixelRatio(window.devicePixelRatio) //防止输出模糊
     renderer.setSize(container.value.clientWidth, container.value.clientHeight) // 设置渲染器大小
     container.value.appendChild(renderer.domElement) // 将渲染器添加到容器中
-    renderer.outputColorSpace = THREE.SRGBColorSpace // 设置渲染器输出颜色空间为sRGB
-    renderer.setClearColor(0x000000, 1) // 设置渲染器背景颜色为黑色，透明度为0
-    
     // 创建相机控件
     controls = new OrbitControls(camera, renderer.domElement)
-
+    controls.target.copy(pointsArr[i + 1])
+    controls.enableDamping = true // 启用阻尼效果
+    controls.enablePan = false // 禁用平移
+    controls.enableRotate = false // 禁用旋转
     // 辅助线设置
     const axesHelper = new THREE.AxesHelper(450) // 辅助坐标轴
     scene.add(axesHelper) // 添加到场景中
@@ -56,17 +64,22 @@
     scene.add(gridHelper)
     gridHelper.visible = false
   }
-
+  // 管道漫游动画
+  let t = 0
+  function pipeRoam() {
+    if (t < pointsArr.length - 1) {
+      camera.position.copy(pointsArr[t])
+      camera.lookAt(pointsArr[t + 1])
+      controls.target.copy(pointsArr[t + 1])
+      t++
+    }else{
+      t = 0
+    }
+  }
   // 动画循环函数
   const animationId = ref<any|null>(null)
-  let angle = 0
-  const R = 100
   function animate() {
-    // 相机圆周运动
-    angle += 0.01
-    camera.position.x = R * Math.cos(angle)
-    camera.position.z = R * Math.sin(angle)
-    camera.lookAt(0, 0, 0) // 设置相机朝向场景的原点
+    pipeRoam()
     controls.update()
     renderer.render(scene, camera)
     animationId.value = requestAnimationFrame(animate)
@@ -93,7 +106,7 @@
 
   // 组件名称定义
   defineOptions({
-    name: 'CameraAnimate'
+    name: 'PipeCamera'
   })
 </script>
 <template>

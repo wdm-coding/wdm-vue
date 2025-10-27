@@ -5,14 +5,16 @@
   import type {
     Scene, OrthographicCamera, WebGLRenderer,PerspectiveCamera
   } from 'three'
-  import { perspective } from './camera'
+  import { perCamera } from '../../threejs-utils/camera'
+  import { dirLight,ambLight } from '../../threejs-utils/light'
+  import { glRender } from '../../threejs-utils/render'
+  import { orbControl,mapControl } from '../../threejs-utils/controls'
   import { createMesh } from './model'
   const container = useTemplateRef<HTMLDivElement>('container')
   let scene: Scene
   let camera: PerspectiveCamera | OrthographicCamera
   let renderer: WebGLRenderer
   let controls: OrbitControls 
-  let s:number = 100
   const initThree = () => {
     if (!container.value) return
 
@@ -24,49 +26,48 @@
     scene.add(group)
 
     //光源设置
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1) // 平行光颜色、强度
-    directionalLight.position.set(100, 60, 50) // 设置平行光位置斜45度方向
+    const directionalLight = dirLight({}) // 平行光颜色、强度
     scene.add(directionalLight) // 将平行光添加到场景中
-    const ambient = new THREE.AmbientLight(0xffffff, 0.4)
-    scene.add(ambient) // 将环境光添加到场景中
+    const ambientLight = ambLight({}) // 环境光颜色、强度
+    scene.add(ambientLight) // 将环境光添加到场景中
 
     // 创建相机
-    camera = perspective(container.value.clientWidth,container.value.clientHeight)
+    const cameraParams = {
+      width: container.value.clientWidth,
+      height: container.value.clientHeight
+    }
+    camera = perCamera(cameraParams)
     camera.position.set(100, 100, 100)
     camera.lookAt(0, 0, 0)
 
     // 创建渲染器
-    renderer = new THREE.WebGLRenderer({
-      antialias: true, // 抗锯齿
-      logarithmicDepthBuffer: true, // 对数深度缓冲区，用于解决Z-fighting问题
-      preserveDrawingBuffer: true // 保留绘图缓冲区，用于截图
-    })
+    renderer = glRender()
+    renderer.setPixelRatio(window.devicePixelRatio) //防止输出模糊
     renderer.setSize(container.value.clientWidth, container.value.clientHeight) // 设置渲染器大小
     container.value.appendChild(renderer.domElement) // 将渲染器添加到容器中
-    renderer.outputColorSpace = THREE.SRGBColorSpace // 设置渲染器输出颜色空间为sRGB
-    renderer.setClearColor(0x000000, 1) // 设置渲染器背景颜色为黑色，透明度为0
-    
-    // 创建相机控件
-    controls = new OrbitControls(camera, renderer.domElement)
 
-    // 辅助线设置
+    // 创建相机控件
+    // controls = orbControl(camera, renderer.domElement)
+    // controls.enableDamping = false // 禁用阻尼效果
+    // controls.enablePan = false // 禁用平移
+    // // controls.enableRotate = false // 禁用旋转
+    // controls.minDistance = 50 // 最小缩放距离
+    // controls.maxDistance = 300 // 最大缩放距离
+    // controls.minPolarAngle = 0 // 垂直方向最小旋转角度(弧度制)
+    // controls.maxPolarAngle = Math.PI / 2 // 垂直方向最大旋转角度(弧度制)
+    // controls.maxAzimuthAngle = Math.PI / 2 // 水平方向最大旋转角度(弧度制)
+    // controls.minAzimuthAngle = -Math.PI / 2 // 水平方向最小旋转角度(弧度制)
+
+    // 创建地图控件
+    controls = mapControl(camera, renderer.domElement)
+    controls.enableDamping = true // 启用阻尼效果，使得相机移动更加平滑
+    // xyz辅助线设置
     const axesHelper = new THREE.AxesHelper(450) // 辅助坐标轴
     scene.add(axesHelper) // 添加到场景中
-    const gridHelper = new THREE.GridHelper(400, 50) // 网格辅助线 大小500，分割线50
-    scene.add(gridHelper)
-    gridHelper.visible = false
   }
-
   // 动画循环函数
   const animationId = ref<any|null>(null)
-  let angle = 0
-  const R = 100
   function animate() {
-    // 相机圆周运动
-    angle += 0.01
-    camera.position.x = R * Math.cos(angle)
-    camera.position.z = R * Math.sin(angle)
-    camera.lookAt(0, 0, 0) // 设置相机朝向场景的原点
     controls.update()
     renderer.render(scene, camera)
     animationId.value = requestAnimationFrame(animate)
@@ -93,7 +94,7 @@
 
   // 组件名称定义
   defineOptions({
-    name: 'CameraAnimate'
+    name: 'ControlAttr'
   })
 </script>
 <template>

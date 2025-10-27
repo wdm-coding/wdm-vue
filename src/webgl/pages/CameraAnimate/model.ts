@@ -1,23 +1,14 @@
 import * as THREE from 'three'
-import mapData from './data'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+const loadUrl = '/public/three-js/gltf/gc.gltf'
 const createModel = () => {
   const model = new THREE.Group()
-  const pointerArr = mapData.map(item => new THREE.Vector2(...item))
-  const shape = new THREE.Shape(pointerArr)
-  const geo = new THREE.ShapeGeometry(shape)
-  const mat = new THREE.MeshBasicMaterial({
-    color: 0xff0000
+  // 实例化加载器对象
+  const loader = new GLTFLoader()
+  // 加载模型
+  loader.load(loadUrl,gltf => {
+    model.add(gltf.scene)
   })
-  const mesh = new THREE.Mesh(geo, mat)
-  model.add(mesh)
-  // 通过包围盒计算中心点和大小
-  const box = new THREE.Box3()
-  box.expandByObject(mesh)
-  const size = new THREE.Vector3()
-  box.getSize(size)
-  const center = new THREE.Vector3()
-  box.getCenter(center)
-  console.log('size',size,'center',center)
   return model
 }
 export const createMesh = () => {

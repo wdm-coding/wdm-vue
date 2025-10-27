@@ -474,6 +474,36 @@ export const mockMenuData = [
           title: '相机动画',
           icon: 'fan'
         }
+      },
+      {
+        id: 47,
+        path: 'camera-look',
+        name: 'CameraLook',
+        component: 'CameraLook',
+        meta: {
+          title: '不同角度观察',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 48,
+        path: 'pipe-camera',
+        name: 'PipeCamera',
+        component: 'PipeCamera',
+        meta: {
+          title: '管道漫游',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 49,
+        path: 'control-attr',
+        name: 'ControlAttr',
+        component: 'ControlAttr',
+        meta: {
+          title: '相机控件属性',
+          icon: 'fan'
+        }
       }
     ]
   }

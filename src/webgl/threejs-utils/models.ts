@@ -18,12 +18,13 @@ export const curbIrregularMesh = () => {
   return { mesh,pointsArr }
 }
 // 工厂模型
-export const factoryMesh = () => {
+export const factoryMesh = (fun?:any) => {
   const model = new THREE.Group()
   // 实例化加载器对象
   const loader = new GLTFLoader()
   // 加载模型
   loader.load('/public/three-js/gltf/gc.gltf',gltf => {
+    fun(gltf)
     model.add(gltf.scene)
   })
   return model

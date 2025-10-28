@@ -564,6 +564,76 @@ export const mockMenuData = [
           title: '平行光模拟太阳光',
           icon: 'fan'
         }
+      },
+      {
+        id: 55,
+        path: 'sprite-model',
+        name: 'SpriteModel',
+        component: 'SpriteModel',
+        meta: {
+          title: '精灵模型',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 56,
+        path: 'sprite-model-map',
+        name: 'SpriteModelMap',
+        component: 'SpriteModelMap',
+        meta: {
+          title: '精灵模型贴图',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 57,
+        path: 'sprite-snow',
+        name: 'SpriteSnow',
+        component: 'SpriteSnow',
+        meta: {
+          title: '下雪精灵模型',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 58,
+        path: 'outline-pass',
+        name: 'OutlinePass',
+        component: 'OutlinePass',
+        meta: {
+          title: '发光描边效果',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 59,
+        path: 'bloom-outline',
+        name: 'BloomOutline',
+        component: 'BloomOutline',
+        meta: {
+          title: 'Bloom发光通道',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 60,
+        path: 'glitch-pass',
+        name: 'GlitchPass',
+        component: 'GlitchPass',
+        meta: {
+          title: '多通道(闪屏效果)',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 61,
+        path: 'model-outline',
+        name: 'ModelOutline',
+        component: 'ModelOutline',
+        meta: {
+          title: '模型描边效果',
+          icon: 'fan'
+        }
       }
     ]
   }

@@ -12,7 +12,7 @@
   const menuList = computed(() => {
     const menuData:MenuItem[] = storage.get('menuData') || []
     if(menuData.length > 0 && menuData[0].children && menuData[0].children.length > 0) {
-      return menuData[0].children
+      return menuData[0].children.sort((a:any,b:any) => b.id - a.id)
     }else{
       return []
     }

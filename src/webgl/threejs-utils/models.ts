@@ -17,7 +17,7 @@ export const curbIrregularMesh = () => {
   const pointsArr = path.getSpacedPoints(500)
   return { mesh,pointsArr }
 }
-
+// 工厂模型
 export const factoryMesh = () => {
   const model = new THREE.Group()
   // 实例化加载器对象
@@ -27,4 +27,21 @@ export const factoryMesh = () => {
     model.add(gltf.scene)
   })
   return model
+}
+// 长方体模型
+export const cftMesh = (color = 0xffff00) => {
+  const geometry = new THREE.BoxGeometry(50,150,50)
+  const material = new THREE.MeshLambertMaterial({ color })
+  const mesh = new THREE.Mesh(geometry, material)
+  return mesh
+}
+//  地面模型
+export const groundMesh = (color = 0x00ffff) => {
+  const geometry = new THREE.PlaneGeometry(600,400)
+  const material = new THREE.MeshLambertMaterial({
+      color
+  })
+  const mesh = new THREE.Mesh(geometry, material)
+  mesh.rotateX(-Math.PI / 2)
+  return mesh
 }

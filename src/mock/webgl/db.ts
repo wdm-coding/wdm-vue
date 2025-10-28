@@ -504,6 +504,66 @@ export const mockMenuData = [
           title: '相机控件属性',
           icon: 'fan'
         }
+      },
+      {
+        id: 50,
+        path: 'spot-light',
+        name: 'SpotLight',
+        component: 'SpotLight',
+        meta: {
+          title: '聚光源',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 51,
+        path: 'light-shadow',
+        name: 'LightShadow',
+        component: 'LightShadow',
+        meta: {
+          title: '平行光阴影',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 51,
+        path: 'light-shadow-range',
+        name: 'LightShadowRange',
+        component: 'LightShadowRange',
+        meta: {
+          title: '平行光阴影范围',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 52,
+        path: 'light-shadow-attr',
+        name: 'LightShadowAttr',
+        component: 'LightShadowAttr',
+        meta: {
+          title: '平行光阴影属性',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 53,
+        path: 'env-light',
+        name: 'EnvLight',
+        component: 'EnvLight',
+        meta: {
+          title: '环境贴图和环境光',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 54,
+        path: 'sun-light',
+        name: 'SunLight',
+        component: 'SunLight',
+        meta: {
+          title: '平行光模拟太阳光',
+          icon: 'fan'
+        }
       }
     ]
   }

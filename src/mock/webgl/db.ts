@@ -634,6 +634,26 @@ export const mockMenuData = [
           title: '模型描边效果',
           icon: 'fan'
         }
+      },
+      {
+        id: 62,
+        path: 'ray-model',
+        name: 'RayModel',
+        component: 'RayModel',
+        meta: {
+          title: '射线类',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 63,
+        path: 'raycaster-model',
+        name: 'RaycasterModel',
+        component: 'RaycasterModel',
+        meta: {
+          title: '射线投射器',
+          icon: 'fan'
+        }
       }
     ]
   }

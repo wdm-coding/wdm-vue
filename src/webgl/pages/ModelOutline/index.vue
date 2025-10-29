@@ -5,7 +5,7 @@
     Scene, OrthographicCamera, WebGLRenderer,PerspectiveCamera
   } from 'three'
   import { perCamera } from '../../threejs-utils/camera'
-  import { ambLight } from '../../threejs-utils/light'
+  import { ambLight,dirLight } from '../../threejs-utils/light'
   import { glRender } from '../../threejs-utils/render'
   import { orbControl } from '../../threejs-utils/controls'
   import {
@@ -17,6 +17,9 @@
   import { GammaCorrectionShader } from 'three/addons/shaders/GammaCorrectionShader.js'
   // ShaderPass功能：使用后处理Shader创建后处理通道
   import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js'
+  // 抗锯齿Shader
+  import { FXAAShader } from 'three/addons/shaders/FXAAShader.js'
+  import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js'
   const container = useTemplateRef<HTMLDivElement>('container')
   let scene: Scene
   let camera: PerspectiveCamera | OrthographicCamera
@@ -36,6 +39,9 @@
     scene.add(group)
 
     //光源设置
+    const dirLightIns = dirLight({ color: 0xffffff, intensity: 1 }) // 平行光颜色、强度
+    dirLightIns.position.set(100, 100, 100)
+    scene.add(dirLightIns ) // 将平行光添加到场景中
     const ambLightIns = ambLight({ intensity: 2 }) // 环境光颜色、强度
     scene.add(ambLightIns ) // 将环境光添加到场景中
     // 创建相机
@@ -44,17 +50,21 @@
       height: container.value.clientHeight
     }
     camera = perCamera(cameraParams)
-    camera.position.set(80, 80, 80)
+    camera.position.set(0.032, 9.9, 51.34)
+    // x: 0.03204736619888858, y: 9.90591028341055, z: 51.340726020126915
     camera.lookAt(0, 0, 0)
     // 创建渲染器
     renderer = glRender()
     renderer.setPixelRatio(window.devicePixelRatio) //防止输出模糊
     renderer.setSize(container.value.clientWidth, container.value.clientHeight) // 设置渲染器大小
     container.value.appendChild(renderer.domElement) // 将渲染器添加到容器中
-
+    renderer.outputColorSpace = THREE.SRGBColorSpace
     // 创建相机控件
     controls = orbControl(camera, renderer.domElement)
-
+    // 监听控件change事件
+    controls.addEventListener('change', function () {
+      console.log('camera.position',camera.position)
+    })
     // xyz辅助线设置
     axesHelperLine(scene,450) // 辅助坐标轴
 
@@ -77,6 +87,16 @@
     const gammaPass = new ShaderPass(GammaCorrectionShader)
     // 将伽马校正后处理Shader添加到渲染器中
     composer.addPass(gammaPass)
+    // 抗锯齿后处理Shader
+    // const FXAAPass = new ShaderPass(FXAAShader)
+    // composer.addPass(FXAAPass)
+    // 获取设备像素比
+    // const pixelRatio = renderer.getPixelRatio()
+    // FXAAPass.material.uniforms['resolution'].value.x = 1 / (container.value.clientWidth * pixelRatio)
+    // FXAAPass.material.uniforms['resolution'].value.y = 1 / (container.value.clientHeight * pixelRatio)
+    // SMAAPass
+    const smaaPass = new SMAAPass()
+    composer.addPass(smaaPass)
   }
   // 动画循环函数
   const animationId = ref<any|null>(null)

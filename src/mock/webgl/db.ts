@@ -654,6 +654,36 @@ export const mockMenuData = [
           title: '射线投射器',
           icon: 'fan'
         }
+      },
+      {
+        id: 64,
+        path: 'mouse-offset',
+        name: 'MouseOffset',
+        component: 'MouseOffset',
+        meta: {
+          title: '鼠标坐标与threejs坐标系',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 65,
+        path: 'select-model',
+        name: 'SelectModel',
+        component: 'SelectModel',
+        meta: {
+          title: '点击选中模型',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 66,
+        path: 'sprite-ray',
+        name: 'SpriteRay',
+        component: 'SpriteRay',
+        meta: {
+          title: '射线选中精灵模型',
+          icon: 'fan'
+        }
       }
     ]
   }

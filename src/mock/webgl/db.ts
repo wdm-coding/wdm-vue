@@ -684,6 +684,106 @@ export const mockMenuData = [
           title: '射线选中精灵模型',
           icon: 'fan'
         }
+      },
+      {
+        id: 67,
+        path: 'label-html',
+        name: 'LabelHtml',
+        component: 'LabelHtml',
+        meta: {
+          title: 'html标签',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 68,
+        path: 'label-sign',
+        name: 'LabelSign',
+        component: 'LabelSign',
+        meta: {
+          title: '标签标记特殊位置',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 69,
+        path: 'label-model',
+        name: 'LabelModel',
+        component: 'LabelModel',
+        meta: {
+          title: '标签标记模型',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 70,
+        path: 'label-line',
+        name: 'LabelLine',
+        component: 'LabelLine',
+        meta: {
+          title: '标签指示线',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 71,
+        path: 'label-select',
+        name: 'LabelSelect',
+        component: 'LabelSelect',
+        meta: {
+          title: '标签选择',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 72,
+        path: 'label-3d',
+        name: 'Label3D',
+        component: 'Label3D',
+        meta: {
+          title: '标签css3d',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 73,
+        path: 'label-3d-sprite',
+        name: 'Label3DSprite',
+        component: 'Label3DSprite',
+        meta: {
+          title: '标签精灵模型',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 74,
+        path: 'multiple-label-3d',
+        name: 'MultipleLabel3D',
+        component: 'MultipleLabel3D',
+        meta: {
+          title: '批量标注多个标签',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 75,
+        path: 'sprite-label',
+        name: 'SpriteLabel',
+        component: 'SpriteLabel',
+        meta: {
+          title: '精灵模型标签',
+          icon: 'fan'
+        }
+      },
+      {
+        id: 76,
+        path: 'sprite-label-canvas',
+        name: 'SpriteLabelCanvas',
+        component: 'SpriteLabelCanvas',
+        meta: {
+          title: '精灵模型Canvas标签',
+          icon: 'fan'
+        }
       }
     ]
   }

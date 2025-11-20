@@ -4,7 +4,7 @@
   + 选择typescript
 2. node 版本 22.12.x
 3. 安装依赖 npm install
-
+ ss
 # 项目结构
 
 ## ts配置文件
